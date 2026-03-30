@@ -1,4 +1,9 @@
 
+using Aplication.Interfaces;
+using Aplication.Services;
+using Infrastructure.Persistence.Context;
+using Infrastructure.Persistence.Repositories;
+
 namespace ReservationSystem
 {
     public class Program
@@ -13,6 +18,11 @@ namespace ReservationSystem
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddSqlServer<AppDbContext>(builder.Configuration.GetConnectionString("AppConnection"));
+
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            builder.Services.AddScoped<IPropertyService, PropertyService>();
 
             var app = builder.Build();
 

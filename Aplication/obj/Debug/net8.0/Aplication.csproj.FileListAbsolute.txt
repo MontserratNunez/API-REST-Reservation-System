@@ -14,3 +14,5 @@ C:\Users\monts\source\repos\ReservationSystem\Aplication\obj\Debug\net8.0\Aplica
 C:\Users\monts\source\repos\ReservationSystem\Aplication\obj\Debug\net8.0\refint\Aplication.dll
 C:\Users\monts\source\repos\ReservationSystem\Aplication\obj\Debug\net8.0\Aplication.pdb
 C:\Users\monts\source\repos\ReservationSystem\Aplication\obj\Debug\net8.0\ref\Aplication.dll
+C:\Users\monts\source\repos\ReservationSystem\Aplication\bin\Debug\net8.0\Aplication.runtimeconfig.json
+C:\Users\monts\source\repos\ReservationSystem\Aplication\obj\Debug\net8.0\Aplication.genruntimeconfig.cache

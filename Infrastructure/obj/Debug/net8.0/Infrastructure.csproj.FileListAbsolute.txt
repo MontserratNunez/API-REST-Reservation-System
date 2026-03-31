@@ -16,3 +16,5 @@ C:\Users\monts\source\repos\ReservationSystem\Infrastructure\obj\Debug\net8.0\In
 C:\Users\monts\source\repos\ReservationSystem\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
 C:\Users\monts\source\repos\ReservationSystem\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 C:\Users\monts\source\repos\ReservationSystem\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
+C:\Users\monts\source\repos\ReservationSystem\Infrastructure\bin\Debug\net8.0\Infrastructure.runtimeconfig.json
+C:\Users\monts\source\repos\ReservationSystem\Infrastructure\obj\Debug\net8.0\Infrastructure.genruntimeconfig.cache

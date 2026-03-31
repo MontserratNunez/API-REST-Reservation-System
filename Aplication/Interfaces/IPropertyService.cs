@@ -10,13 +10,13 @@ namespace Aplication.Interfaces
 {
     public interface IPropertyService
     {
-        IEnumerable<Property> GetAll();
+        IEnumerable<PropertyViewVM> GetAll();
 
-        Property GetValue(int id);
+        PropertyViewVM GetProperty(int id);
 
         void Add(PropertyDTO entity);
 
-        void Update(PropertyUpdateDTO entity);
+        void Update(int id, PropertyUpdateDTO entity);
 
         void Delete(int id);
     }

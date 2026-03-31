@@ -3,32 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\dtos\\propertyupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\dtos\\propertyupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\services\\propertyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\services\\propertyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53227FAD-1C4A-4BD2-BFD2-681236816477}|Infrastructure\\Infrastructure.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\infrastructure\\persistence\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53227FAD-1C4A-4BD2-BFD2-681236816477}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\interfaces\\ipropertyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\interfaces\\ipropertyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\dtos\\propertydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\dtos\\propertydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53227FAD-1C4A-4BD2-BFD2-681236816477}|Infrastructure\\Infrastructure.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\infrastructure\\persistence\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53227FAD-1C4A-4BD2-BFD2-681236816477}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{355F7DD1-F19C-4606-9F4D-B1EE4B0FB0FD}|Dominio\\Domain.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\dominio\\entity\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{355F7DD1-F19C-4606-9F4D-B1EE4B0FB0FD}|Dominio\\Domain.csproj|solutionrelative:dominio\\entity\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{355F7DD1-F19C-4606-9F4D-B1EE4B0FB0FD}|Dominio\\Domain.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\dominio\\entity\\property.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,8 +18,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Reservation.cs",
+              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Entity\\Reservation.cs",
+              "RelativeDocumentMoniker": "Dominio\\Entity\\Reservation.cs",
+              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Entity\\Reservation.cs",
+              "RelativeToolTip": "Dominio\\Entity\\Reservation.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T18:15:34.632Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
@@ -71,105 +61,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PropertyUpdateDTO.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\DTOs\\PropertyUpdateDTO.cs",
-              "RelativeDocumentMoniker": "Aplication\\DTOs\\PropertyUpdateDTO.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\DTOs\\PropertyUpdateDTO.cs",
-              "RelativeToolTip": "Aplication\\DTOs\\PropertyUpdateDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-30T17:41:08.882Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PropertyController.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\PropertyController.cs",
-              "RelativeDocumentMoniker": "ReservationSystem\\Controllers\\PropertyController.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\PropertyController.cs",
-              "RelativeToolTip": "ReservationSystem\\Controllers\\PropertyController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-30T16:21:02.366Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PropertyService.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\PropertyService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\PropertyService.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\PropertyService.cs",
-              "RelativeToolTip": "Aplication\\Services\\PropertyService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEIAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T21:43:01.732Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IPropertyService.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Interfaces\\IPropertyService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IPropertyService.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Interfaces\\IPropertyService.cs",
-              "RelativeToolTip": "Aplication\\Interfaces\\IPropertyService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-30T16:18:38.16Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Repository.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Persistence\\Repositories\\Repository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\Repositories\\Repository.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Persistence\\Repositories\\Repository.cs",
-              "RelativeToolTip": "Infrastructure\\Persistence\\Repositories\\Repository.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwB4AAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-30T15:40:05.671Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PropertyDTO.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\DTOs\\PropertyDTO.cs",
-              "RelativeDocumentMoniker": "Aplication\\DTOs\\PropertyDTO.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\DTOs\\PropertyDTO.cs",
-              "RelativeToolTip": "Aplication\\DTOs\\PropertyDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-30T16:53:05.072Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "Property.cs",
               "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Entity\\Property.cs",
               "RelativeDocumentMoniker": "Dominio\\Entity\\Property.cs",
               "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Entity\\Property.cs",
               "RelativeToolTip": "Dominio\\Entity\\Property.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T21:34:07.526Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Persistence\\Context\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\Context\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Persistence\\Context\\AppDbContext.cs",
-              "RelativeToolTip": "Infrastructure\\Persistence\\Context\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-30T15:39:42.599Z",
+              "WhenOpened": "2026-03-31T14:30:57.144Z",
               "EditorCaption": ""
             }
           ]

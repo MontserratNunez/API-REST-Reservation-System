@@ -29,6 +29,10 @@ namespace Infrastructure.Persistence.Repositories
         public void Delete(int id)
         {
             var entity = GetValue(id);
+            if (entity == null)
+            {
+                throw new KeyNotFoundException();
+            }
             dbSet.Remove(entity);
             _context.SaveChanges();
         }

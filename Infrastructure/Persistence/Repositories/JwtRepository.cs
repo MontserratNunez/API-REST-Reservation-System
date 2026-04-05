@@ -1,5 +1,5 @@
 ﻿using Aplication.DTOs.Authentication;
-using Aplication.Interfaces;
+using Aplication.Interfaces.IJwt;
 using Domain.Entity;
 using Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Identity;

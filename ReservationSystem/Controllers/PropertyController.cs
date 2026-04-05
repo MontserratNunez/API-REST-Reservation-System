@@ -1,7 +1,7 @@
 ﻿using Aplication.DTOs;
-using Aplication.DTOs.Authentication;
 using Aplication.Interfaces;
 using Domain.Entity;
+using Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,11 +24,11 @@ namespace Presentation.Controllers
 
         [HttpGet]
         //[EnableRateLimiting("per-user")]
-        public IActionResult GetAll([FromQuery] int? capacity) 
+        public async Task<IActionResult> GetAll([FromQuery] int? capacity) 
         {
             try
             {
-                var result = service.GetAll();
+                var result = await service.GetAll();
 
                 return Ok(result);
             }
@@ -40,11 +40,11 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get([FromRoute] int id)
+        public async Task<IActionResult> Get([FromRoute] int id)
         {
             try
             {
-                return Ok(service.GetProperty(id));
+                return Ok(await service.GetProperty(id));
             }
             catch (KeyNotFoundException ex)
             {
@@ -53,28 +53,26 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add([FromBody] PropertyDTO property)
+        public async Task<IActionResult> Add([FromBody] PropertyDTO property)
         {
             try
             {
-
+                await service.Add(property);
+                return Ok("Property registered");
             }
-            catch (Exception)
+            catch (UnauthorizedAccessException ex)
             {
-
-                throw;
+                return Unauthorized(ex.Message);
             }
-            service.Add(property);
-            return Ok();
         }
 
         [Authorize(Roles = UserRoles.Host)]
         [HttpPut("{id}")]
-        public IActionResult Update([FromRoute] int id, [FromBody] PropertyUpdateDTO property) 
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] PropertyUpdateDTO property) 
         {
             try
             {
-                service.Update(id, property);
+                await service.Update(id, property);
             }
             catch (KeyNotFoundException ex)
             {

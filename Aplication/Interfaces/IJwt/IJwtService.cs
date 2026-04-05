@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplication.Interfaces
+namespace Aplication.Interfaces.IJwt
 {
     public interface IJwtService
     {

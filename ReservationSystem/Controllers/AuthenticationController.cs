@@ -15,7 +15,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Infrastructure.Persistence.Context;
-using Aplication.Interfaces;
+using Aplication.Interfaces.IJwt;
 
 namespace Presentation.Controllers
 {
@@ -30,7 +30,7 @@ namespace Presentation.Controllers
             _jwtService = jwtService;
         }
 
-        [HttpPost("register-user")]
+        [HttpPost("sing-in")]
         public async Task<IActionResult> Register([FromBody]RegisterVM payload)
         {
             if (!ModelState.IsValid)
@@ -50,7 +50,7 @@ namespace Presentation.Controllers
             return Created(nameof(Register), $"User {payload.Email} created");
         }
 
-        [HttpPost("login-user")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]LoginVM payload)
         {
             if (!ModelState.IsValid)

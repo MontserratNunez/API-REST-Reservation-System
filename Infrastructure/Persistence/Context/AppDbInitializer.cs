@@ -1,7 +1,7 @@
-﻿using Aplication.DTOs.Authentication;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

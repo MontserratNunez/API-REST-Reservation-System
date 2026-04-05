@@ -8,14 +8,14 @@ namespace Aplication.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAll();
 
-        T GetValue(int id);
+        Task<T> GetValue(int id);
 
-        void Add(T entity);
+        Task Add(T entity);
 
-        void Update(T entity);
+        Task Update(T entity);
 
-        void Delete(int id);
+        Task Delete(int id);
     }
 }

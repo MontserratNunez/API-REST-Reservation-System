@@ -24,13 +24,10 @@ namespace Aplication.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public void Add(PropertyDTO dto)
+        public async Task Add(PropertyDTO dto)
         {
 
-            var userId = _httpContextAccessor.HttpContext?
-                        .User?
-                        .FindFirst(ClaimTypes.NameIdentifier)?
-                        .Value;
+            var userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(userId))
             {
@@ -48,19 +45,18 @@ namespace Aplication.Services
             };
 
 
-            _repository.Add(property);
+            await _repository.Add(property);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            var original = GetValue(id);
+            var original = await GetValue(id);
 
             if (original == null)
                 throw new KeyNotFoundException("Property not found.");
 
 
-            var userId = _httpContextAccessor.HttpContext.User
-                .FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (original.IdHost != userId)
             {
@@ -68,14 +64,12 @@ namespace Aplication.Services
             }
 
 
-            _repository.Delete(id);
+            await _repository.Delete(id);
         }
 
-        public IEnumerable<PropertyViewVM> GetAll()
+        public async Task<IEnumerable<PropertyViewVM>> GetAll()
         {
-            var properties = _repository.GetAll();
-
-            return properties.Select(p => new PropertyViewVM
+            return (await _repository.GetAll()).Select(p => new PropertyViewVM
             {
                 Id = p.Id,
                 Title = p.Title,
@@ -87,9 +81,9 @@ namespace Aplication.Services
 
         }
 
-        public PropertyViewVM GetProperty(int id)
+        public async Task<PropertyViewVM> GetProperty(int id)
         {
-            var property = GetValue(id);
+            var property = await GetValue(id);
 
 
             if (property == null)
@@ -109,14 +103,14 @@ namespace Aplication.Services
 
         }
 
-        private Property GetValue(int id)
+        private async Task<Property> GetValue(int id)
         {
-            return _repository.GetValue(id);
+            return await _repository.GetValue(id);
         }
 
-        public void Update(int id, PropertyUpdateDTO dto)
+        public async Task Update(int id, PropertyUpdateDTO dto)
         {
-            var original = GetValue(id);
+            var original = await GetValue(id);
 
             if (original == null)
             {
@@ -137,7 +131,7 @@ namespace Aplication.Services
             original.Price = dto.Price ?? original.Price;
             original.Capacity = dto.Capacity ?? original.Capacity;
 
-            _repository.Update(original);
+            await _repository.Update(original);
         }
     }
 }

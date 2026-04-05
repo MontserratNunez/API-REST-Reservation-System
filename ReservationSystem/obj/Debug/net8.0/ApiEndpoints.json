@@ -2,7 +2,7 @@
   {
     "ContainingType": "Presentation.Controllers.AuthenticationController",
     "Method": "Login",
-    "RelativePath": "api/Authentication/login-user",
+    "RelativePath": "api/Authentication/login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -34,7 +34,7 @@
   {
     "ContainingType": "Presentation.Controllers.AuthenticationController",
     "Method": "Register",
-    "RelativePath": "api/Authentication/register-user",
+    "RelativePath": "api/Authentication/sing-in",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -121,6 +121,91 @@
     "Method": "Delete",
     "RelativePath": "api/Property/{id}",
     "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.ReservationController",
+    "Method": "Get",
+    "RelativePath": "api/Reservation/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.ReservationController",
+    "Method": "Add",
+    "RelativePath": "api/Reservation/properties/{propertyId}/reservations",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "propertyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Aplication.DTOs.ReservationCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.ReservationController",
+    "Method": "GetAllReservationsVM",
+    "RelativePath": "api/Reservation/property/{id}/reservations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.ReservationController",
+    "Method": "Cancel",
+    "RelativePath": "api/Reservation/reservation/{id}/cancel",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.ReservationController",
+    "Method": "Complete",
+    "RelativePath": "api/Reservation/reservation/{id}/complete",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [

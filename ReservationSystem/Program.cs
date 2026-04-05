@@ -13,6 +13,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using my_books.Data;
+using Aplication.Interfaces.IJwt;
 
 namespace ReservationSystem
 {
@@ -61,6 +62,9 @@ namespace ReservationSystem
             builder.Services.AddScoped<IPropertyService, PropertyService>();
             builder.Services.AddScoped<IJwtService, JwtService>();
             builder.Services.AddScoped<IJwtRepository, JwtRepository>();
+            builder.Services.AddScoped<IReservationService, ReservationService>();
+            builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+            builder.Services.AddScoped<ILockRepository, LockRepository>();
 
             var tokenValidationParameters = new TokenValidationParameters()
             {

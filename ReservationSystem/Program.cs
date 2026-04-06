@@ -29,7 +29,7 @@ namespace ReservationSystem
 
             // Add services to the container.
 
-            builder.Services.AddControllers();//.AddFluentValidation();
+            builder.Services.AddControllers().AddFluentValidation();
             
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -57,8 +57,8 @@ namespace ReservationSystem
                 });
             });
 
-            /*builder.Services.AddValidatorsFromAssemblyContaining<ReservationCreateDTOValidator>();
-            builder.Services.AddValidatorsFromAssemblyContaining<ReviewCreateDTOValidator>();*/
+            builder.Services.AddValidatorsFromAssemblyContaining<ReservationCreateDTOValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<ReviewCreateDTOValidator>();
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AppConnection")));
 
@@ -149,7 +149,7 @@ namespace ReservationSystem
                 app.UseSwaggerUI();
             }
 
-            //app.UseMiddleware<ExceptionHandlingMiddleware>();
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseHttpsRedirection();
 

@@ -29,8 +29,8 @@ namespace ReservationSystem
 
             // Add services to the container.
 
-            builder.Services.AddControllers().AddFluentValidation();
-            ;
+            builder.Services.AddControllers();//.AddFluentValidation();
+            
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
@@ -50,7 +50,6 @@ namespace ReservationSystem
                     }
                 };
                 
-
                 options.AddSecurityDefinition("Bearer", jwtSecurityScheme);
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
@@ -58,20 +57,26 @@ namespace ReservationSystem
                 });
             });
 
-            builder.Services.AddValidatorsFromAssemblyContaining<ReservationCreateDTOValidator>();
+            /*builder.Services.AddValidatorsFromAssemblyContaining<ReservationCreateDTOValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<ReviewCreateDTOValidator>();*/
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AppConnection")));
 
-            //builder.Services.AddSqlServer<AppDbContext>(builder.Configuration.GetConnectionString("AppConnection"));
-
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
             builder.Services.AddScoped<IPropertyService, PropertyService>();
+
             builder.Services.AddScoped<IJwtService, JwtService>();
             builder.Services.AddScoped<IJwtRepository, JwtRepository>();
+
             builder.Services.AddScoped<IReservationService, ReservationService>();
             builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+
             builder.Services.AddScoped<ILockService, LockService>();
             builder.Services.AddScoped<ILockRepository, LockRepository>();
+
+            builder.Services.AddScoped<IReviewService, ReviewService>();
+            builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
             var tokenValidationParameters = new TokenValidationParameters()
             {
@@ -139,11 +144,12 @@ namespace ReservationSystem
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
 
-            app.UseMiddleware<ExceptionHandlingMiddleware>();
+            //app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseHttpsRedirection();
 

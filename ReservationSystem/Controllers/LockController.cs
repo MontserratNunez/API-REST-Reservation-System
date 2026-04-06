@@ -26,27 +26,6 @@ namespace Presentation.Controllers
         {
             await service.Add(propertyId, dto);
             return Created(nameof(Add), $"Lock created.");
-            /*try
-            {
-                await service.Add(propertyId, dto);
-                return Created(nameof(Add), $"Lock created.");
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Unauthorized(ex.Message);
-            }
-            catch (InvalidOperationException ex)
-            {
-                return Conflict(new { message = ex.Message });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }*/
         }
 
         [Authorize(Roles = UserRoles.Host)]
@@ -55,24 +34,6 @@ namespace Presentation.Controllers
         {
             var result = await service.GetPropertyLocks(id);
             return Ok(result);
-
-            /*try
-            {
-                var result = await service.GetPropertyLocks(id);
-                return Ok(result);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Unauthorized(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }*/
         }
 
         [Authorize(Roles = UserRoles.Host)]
@@ -81,24 +42,6 @@ namespace Presentation.Controllers
         {
             await service.Delete(id);
             return Ok("Lock deleted");
-
-            /*try
-            {
-                await service.Delete(id);
-                return Ok("Lock deleted");
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Unauthorized(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }*/
         }
     }
 }

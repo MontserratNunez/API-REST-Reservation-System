@@ -16,7 +16,7 @@ namespace Infrastructure.Persistence.Context
         public DbSet<Property> Property { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
-        //public DbSet<Review> Review { get; set; }
+        public DbSet<Review> Review { get; set; }
         public DbSet<Lock> Lock { get; set; }
         //public DbSet<Notification> Notification { get; set; }
 

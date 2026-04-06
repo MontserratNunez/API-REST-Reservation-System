@@ -10,8 +10,6 @@ namespace Aplication.Interfaces
     public interface IReservationRepository : IRepository<Reservation>
     {
         Task<IEnumerable<Reservation>> GetByPropertyIdAsync(int propertyId);
-
         Task<bool> OverlappingReservation(int propertyId, DateTime startDate, DateTime endDate);
     }
-
 }

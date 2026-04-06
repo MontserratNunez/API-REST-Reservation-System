@@ -10,7 +10,7 @@ namespace Domain.Entity
     {
         public int Id { get; set; }
         public int IdProperty { get; set; }
-        public int IdGuest { get; set; }
+        public string IdGuest { get; set; }
         public int Rating { get; set; }
         public string Comment { get; set; }
         public DateTime ReviewDate { get; set; }

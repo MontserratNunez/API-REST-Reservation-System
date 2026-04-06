@@ -40,17 +40,6 @@ namespace Presentation.Controllers
 
             await _jwtService.Register(payload);
             return Created(nameof(Register), $"User {payload.Email} created");
-
-            /*try
-            {
-                await _jwtService.Register(payload);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-            return Created(nameof(Register), $"User {payload.Email} created");*/
         }
 
         [HttpPost("login")]
@@ -63,16 +52,6 @@ namespace Presentation.Controllers
 
             var tokenValue = await _jwtService.Login(payload);
             return Ok(tokenValue);
-
-            /*try
-            {
-                var tokenValue = await _jwtService.Login(payload);
-                return Ok(tokenValue);
-            }
-            catch (Exception ex)
-            {
-                return Unauthorized(ex.Message);
-            }*/
         }
 
         [HttpPost("refresh-token")]
@@ -86,19 +65,6 @@ namespace Presentation.Controllers
             }
 
             return Ok(result);
-
-            /*try
-            {
-                var result = await _jwtService.VerifyAndGenerateTokenAsync(payload);
-
-                if (result == null) { return BadRequest("Invalid tokens"); }
-
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }*/
         }
     }
 }

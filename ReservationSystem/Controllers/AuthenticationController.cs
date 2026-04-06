@@ -66,5 +66,13 @@ namespace Presentation.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("emailconfirmation")]
+        public async Task<IActionResult> EmailConfirmation([FromQuery] string email, [FromQuery] string token)
+        {
+            await _jwtService.EmailConfirmation(email, token);
+
+            return Ok();
+        }
     }
 }

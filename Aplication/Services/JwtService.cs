@@ -1,10 +1,13 @@
 ﻿using Aplication.DTOs.Authentication;
+using Aplication.Emails;
+using Aplication.Interfaces;
 using Aplication.Interfaces.IJwt;
 using Domain.Entity;
 using Domain.Enums;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -25,6 +28,7 @@ namespace Aplication.Services
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly IJwtRepository _jwtRepository;
+        private readonly IEmailService _emailService;
 
         private readonly TokenValidationParameters _tokenValidationParameters;
 
@@ -32,7 +36,8 @@ namespace Aplication.Services
             RoleManager<IdentityRole> roleManager, 
             IConfiguration configuration, 
             IJwtRepository jwtRepository, 
-            TokenValidationParameters tokenValidationParameters
+            TokenValidationParameters tokenValidationParameters,
+            IEmailService emailService
             )
         {
             _userManager = userManager;
@@ -40,6 +45,8 @@ namespace Aplication.Services
             _configuration = configuration;
             _jwtRepository = jwtRepository;
             _tokenValidationParameters = tokenValidationParameters;
+
+            _emailService = emailService;
         }
 
         public async Task Register([FromBody] RegisterVM payload)
@@ -67,6 +74,26 @@ namespace Aplication.Services
                 throw new UserCreationFailedException(errors);
             }
 
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+            var param = new Dictionary<string, string?>
+            {
+                {"token", token},
+                {"email", newUser.Email }
+            };
+
+            var callback = QueryHelpers.AddQueryString(payload.ClientUri!, param);
+
+            var body = EmailTemplates.ConfirmAccount(callback);
+
+            _ = Task.Run(async () =>
+            {
+                await _emailService.SendEmail(
+                    payload.Email,
+                    "Confirm your account",
+                    body
+                );
+            });
+
             switch (payload.Role)
             {
                 case "Admin":
@@ -84,6 +111,9 @@ namespace Aplication.Services
         public async Task<AuthResultVM> Login([FromBody] LoginVM payload)
         {
             var user = await _userManager.FindByEmailAsync(payload.Email);
+
+            if (!await _userManager.IsEmailConfirmedAsync(user))
+                throw new UnauthorizedDomainException("Email is not confirmed");
 
             if (user != null && await _userManager.CheckPasswordAsync(user, payload.Password))
             {
@@ -202,6 +232,23 @@ namespace Aplication.Services
             var dateTimeVal = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             dateTimeVal = dateTimeVal.AddSeconds(unixTimeStamp);
             return dateTimeVal;
+        }
+
+        public async Task EmailConfirmation(string email, string token)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user is null)
+            {
+                throw new BusinessRuleException("Invalid email confirmation request");
+            }
+
+            var confirmResult  = await _userManager.ConfirmEmailAsync(user, token);
+
+            if (!confirmResult.Succeeded)
+            {
+                throw new BusinessRuleException("Invalid email confirmation request");
+            }
         }
     }
 }

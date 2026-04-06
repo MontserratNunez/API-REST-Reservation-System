@@ -3,52 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Migrations\\20260406072852_FixReviewIdGuest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Migrations\\20260406072852_FixReviewIdGuest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{355F7DD1-F19C-4606-9F4D-B1EE4B0FB0FD}|Dominio\\Domain.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\dominio\\entity\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{355F7DD1-F19C-4606-9F4D-B1EE4B0FB0FD}|Dominio\\Domain.csproj|solutionrelative:dominio\\entity\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\services\\reviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\services\\reviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{53227FAD-1C4A-4BD2-BFD2-681236816477}|Infrastructure\\Infrastructure.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\infrastructure\\email\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53227FAD-1C4A-4BD2-BFD2-681236816477}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\email\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\emails\\emailtemplates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\emails\\emailtemplates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{355F7DD1-F19C-4606-9F4D-B1EE4B0FB0FD}|Dominio\\Domain.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\dominio\\enums\\reservationstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{355F7DD1-F19C-4606-9F4D-B1EE4B0FB0FD}|Dominio\\Domain.csproj|solutionrelative:dominio\\enums\\reservationstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\dtos\\authentication\\registervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\dtos\\authentication\\registervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Migrations\\20260406071948_AddReview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Migrations\\20260406071948_AddReview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\interfaces\\ijwt\\ijwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\interfaces\\ijwt\\ijwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Migrations\\20260406072221_AddReviewAgain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Migrations\\20260406072221_AddReviewAgain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53227FAD-1C4A-4BD2-BFD2-681236816477}|Infrastructure\\Infrastructure.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\infrastructure\\persistence\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53227FAD-1C4A-4BD2-BFD2-681236816477}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\interfaces\\ireviewrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\interfaces\\ireviewrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53227FAD-1C4A-4BD2-BFD2-681236816477}|Infrastructure\\Infrastructure.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\infrastructure\\persistence\\repositories\\reviewrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53227FAD-1C4A-4BD2-BFD2-681236816477}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\repositories\\reviewrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\validators\\reviewcreatedtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\validators\\reviewcreatedtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{355F7DD1-F19C-4606-9F4D-B1EE4B0FB0FD}|Dominio\\Domain.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\dominio\\exceptions\\unauthorizeddomainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{355F7DD1-F19C-4606-9F4D-B1EE4B0FB0FD}|Dominio\\Domain.csproj|solutionrelative:dominio\\exceptions\\unauthorizeddomainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -86,158 +66,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20260406072852_FixReviewIdGuest.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Migrations\\20260406072852_FixReviewIdGuest.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20260406072852_FixReviewIdGuest.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Migrations\\20260406072852_FixReviewIdGuest.cs",
-              "RelativeToolTip": "Infrastructure\\Migrations\\20260406072852_FixReviewIdGuest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T07:28:52.878Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Review.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Entity\\Review.cs",
-              "RelativeDocumentMoniker": "Dominio\\Entity\\Review.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Entity\\Review.cs",
-              "RelativeToolTip": "Dominio\\Entity\\Review.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T07:28:12.995Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "20260406071948_AddReview.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Migrations\\20260406071948_AddReview.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20260406071948_AddReview.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Migrations\\20260406071948_AddReview.cs",
-              "RelativeToolTip": "Infrastructure\\Migrations\\20260406071948_AddReview.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T07:19:49.24Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ReservationStatus.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Enums\\ReservationStatus.cs",
-              "RelativeDocumentMoniker": "Dominio\\Enums\\ReservationStatus.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Enums\\ReservationStatus.cs",
-              "RelativeToolTip": "Dominio\\Enums\\ReservationStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T07:03:33.744Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ReviewService.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\ReviewService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\ReviewService.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\ReviewService.cs",
-              "RelativeToolTip": "Aplication\\Services\\ReviewService.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAQwDoAAAANAAAAAAAAAA==",
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Email\\EmailService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Email\\EmailService.cs",
+              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Email\\EmailService.cs",
+              "RelativeToolTip": "Infrastructure\\Email\\EmailService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T06:08:12.581Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "IReviewRepository.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Interfaces\\IReviewRepository.cs",
-              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IReviewRepository.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Interfaces\\IReviewRepository.cs",
-              "RelativeToolTip": "Aplication\\Interfaces\\IReviewRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T06:48:32.548Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ReviewRepository.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Persistence\\Repositories\\ReviewRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\Repositories\\ReviewRepository.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Persistence\\Repositories\\ReviewRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Persistence\\Repositories\\ReviewRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T06:43:15.148Z",
+              "WhenOpened": "2026-04-06T21:18:43.922Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Program.cs",
-              "RelativeDocumentMoniker": "ReservationSystem\\Program.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Program.cs",
-              "RelativeToolTip": "ReservationSystem\\Program.cs",
-              "ViewState": "AgIAAIUAAAAAAAAAAAAAAJIAAAAAAAAAAAAAAA==",
+              "Title": "EmailTemplates.cs",
+              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Emails\\EmailTemplates.cs",
+              "RelativeDocumentMoniker": "Aplication\\Emails\\EmailTemplates.cs",
+              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Emails\\EmailTemplates.cs",
+              "RelativeToolTip": "Aplication\\Emails\\EmailTemplates.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T07:13:50.053Z",
+              "WhenOpened": "2026-04-06T21:16:19.677Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Persistence\\Context\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\Context\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Persistence\\Context\\AppDbContext.cs",
-              "RelativeToolTip": "Infrastructure\\Persistence\\Context\\AppDbContext.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "RegisterVM.cs",
+              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\DTOs\\Authentication\\RegisterVM.cs",
+              "RelativeDocumentMoniker": "Aplication\\DTOs\\Authentication\\RegisterVM.cs",
+              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\DTOs\\Authentication\\RegisterVM.cs",
+              "RelativeToolTip": "Aplication\\DTOs\\Authentication\\RegisterVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T07:22:08.87Z",
+              "WhenOpened": "2026-04-06T20:56:52.432Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IJwtService.cs",
+              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Interfaces\\IJwt\\IJwtService.cs",
+              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IJwt\\IJwtService.cs",
+              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Interfaces\\IJwt\\IJwtService.cs",
+              "RelativeToolTip": "Aplication\\Interfaces\\IJwt\\IJwtService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T19:23:30.389Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthenticationController.cs",
+              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\AuthenticationController.cs",
+              "RelativeDocumentMoniker": "ReservationSystem\\Controllers\\AuthenticationController.cs",
+              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\AuthenticationController.cs",
+              "RelativeToolTip": "ReservationSystem\\Controllers\\AuthenticationController.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAA/wEoAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T19:21:20.37Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "20260406072221_AddReviewAgain.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Migrations\\20260406072221_AddReviewAgain.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20260406072221_AddReviewAgain.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Infrastructure\\Migrations\\20260406072221_AddReviewAgain.cs",
-              "RelativeToolTip": "Infrastructure\\Migrations\\20260406072221_AddReviewAgain.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "UnauthorizedDomainException.cs",
+              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Exceptions\\UnauthorizedDomainException.cs",
+              "RelativeDocumentMoniker": "Dominio\\Exceptions\\UnauthorizedDomainException.cs",
+              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Exceptions\\UnauthorizedDomainException.cs",
+              "RelativeToolTip": "Dominio\\Exceptions\\UnauthorizedDomainException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T07:22:21.574Z",
+              "WhenOpened": "2026-04-06T19:02:53.29Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ReviewController.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\ReviewController.cs",
-              "RelativeDocumentMoniker": "ReservationSystem\\Controllers\\ReviewController.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\ReviewController.cs",
-              "RelativeToolTip": "ReservationSystem\\Controllers\\ReviewController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAGAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "JwtService.cs",
+              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\JwtService.cs",
+              "RelativeDocumentMoniker": "Aplication\\Services\\JwtService.cs",
+              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\JwtService.cs",
+              "RelativeToolTip": "Aplication\\Services\\JwtService.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAcwFcAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T06:11:14.865Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ReviewCreateDTOValidator.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Validators\\ReviewCreateDTOValidator.cs",
-              "RelativeDocumentMoniker": "Aplication\\Validators\\ReviewCreateDTOValidator.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Validators\\ReviewCreateDTOValidator.cs",
-              "RelativeToolTip": "Aplication\\Validators\\ReviewCreateDTOValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T07:07:53.842Z",
+              "WhenOpened": "2026-04-06T18:32:13.312Z",
               "EditorCaption": ""
             }
           ]

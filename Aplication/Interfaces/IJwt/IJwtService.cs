@@ -13,5 +13,6 @@ namespace Aplication.Interfaces.IJwt
         Task Register(RegisterVM payload);
         Task<AuthResultVM> Login(LoginVM payload);
         Task<AuthResultVM> VerifyAndGenerateTokenAsync(TokenRequestDTO payload);
+        Task EmailConfirmation(string email, string token);
     }
 }

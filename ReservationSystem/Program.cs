@@ -18,6 +18,7 @@ using Presentation.Middlewares;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Aplication.Validators;
+using Infrastructure.Email;
 
 namespace ReservationSystem
 {
@@ -78,6 +79,8 @@ namespace ReservationSystem
             builder.Services.AddScoped<IReviewService, ReviewService>();
             builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
+            builder.Services.AddTransient<IEmailService, EmailService>();
+
             var tokenValidationParameters = new TokenValidationParameters()
             {
                 ValidateIssuerSigningKey = true,
@@ -94,6 +97,9 @@ namespace ReservationSystem
             };
 
             builder.Services.AddSingleton(tokenValidationParameters);
+
+            /*var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailService>();
+            builder.Services.AddSingleton(emailConfig);*/
 
             //Add Identity
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

@@ -3,60 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\services\\lockservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\services\\lockservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\controllers\\lockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\controllers\\lockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\services\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\services\\reservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\dtos\\lockvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\dtos\\lockvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\controllers\\reservationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\interfaces\\ilockservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\interfaces\\ilockservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{355F7DD1-F19C-4606-9F4D-B1EE4B0FB0FD}|Dominio\\Domain.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\dominio\\entity\\lock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{355F7DD1-F19C-4606-9F4D-B1EE4B0FB0FD}|Dominio\\Domain.csproj|solutionrelative:dominio\\entity\\lock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\dtos\\lockdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\dtos\\lockdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\middlewares\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\middlewares\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\interfaces\\ireservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\interfaces\\ireservationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\controllers\\propertycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\aplication\\services\\propertyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1ED319E0-F1A3-4FD0-8C8C-C86911B759C7}|Aplication\\Aplication.csproj|solutionrelative:aplication\\services\\propertyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\controllers\\lockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\controllers\\lockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|c:\\users\\monts\\source\\repos\\reservationsystem\\reservationsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58956D14-CC1D-4324-9517-07C4D758A29A}|ReservationSystem\\Presentation.csproj|solutionrelative:reservationsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,180 +66,96 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Lock.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Entity\\Lock.cs",
-              "RelativeDocumentMoniker": "Dominio\\Entity\\Lock.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Dominio\\Entity\\Lock.cs",
-              "RelativeToolTip": "Dominio\\Entity\\Lock.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T00:57:58.075Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "ILockService.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Interfaces\\ILockService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Interfaces\\ILockService.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Interfaces\\ILockService.cs",
-              "RelativeToolTip": "Aplication\\Interfaces\\ILockService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T00:56:47.595Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LockService.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\LockService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\LockService.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\LockService.cs",
-              "RelativeToolTip": "Aplication\\Services\\LockService.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAYwFAAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T00:31:29.064Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LockController.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\LockController.cs",
-              "RelativeDocumentMoniker": "ReservationSystem\\Controllers\\LockController.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\LockController.cs",
-              "RelativeToolTip": "ReservationSystem\\Controllers\\LockController.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAuwFEAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T00:30:01.088Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ReservationController.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\ReservationController.cs",
-              "RelativeDocumentMoniker": "ReservationSystem\\Controllers\\ReservationController.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\ReservationController.cs",
-              "RelativeToolTip": "ReservationSystem\\Controllers\\ReservationController.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAgwEEAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T00:58:28.495Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ReservationService.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\ReservationService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\ReservationService.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\ReservationService.cs",
-              "RelativeToolTip": "Aplication\\Services\\ReservationService.cs",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAgwJEAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-05T01:42:05.497Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LockVM.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\DTOs\\LockVM.cs",
-              "RelativeDocumentMoniker": "Aplication\\DTOs\\LockVM.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\DTOs\\LockVM.cs",
-              "RelativeToolTip": "Aplication\\DTOs\\LockVM.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T01:03:52.68Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Program.cs",
               "RelativeDocumentMoniker": "ReservationSystem\\Program.cs",
               "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Program.cs",
               "RelativeToolTip": "ReservationSystem\\Program.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAQwE8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB8AAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-05T00:46:00.973Z",
+              "WhenOpened": "2026-04-06T03:20:12.025Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "LockDTO.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\DTOs\\LockDTO.cs",
-              "RelativeDocumentMoniker": "Aplication\\DTOs\\LockDTO.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\DTOs\\LockDTO.cs",
-              "RelativeToolTip": "Aplication\\DTOs\\LockDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAYAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ExceptionHandlingMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Middlewares\\ExceptionHandlingMiddleware.cs",
+              "RelativeDocumentMoniker": "ReservationSystem\\Middlewares\\ExceptionHandlingMiddleware.cs",
+              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Middlewares\\ExceptionHandlingMiddleware.cs",
+              "RelativeToolTip": "ReservationSystem\\Middlewares\\ExceptionHandlingMiddleware.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T01:01:45.802Z",
+              "WhenOpened": "2026-04-06T03:19:06.045Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 4,
               "Title": "PropertyService.cs",
               "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\PropertyService.cs",
               "RelativeDocumentMoniker": "Aplication\\Services\\PropertyService.cs",
               "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\PropertyService.cs",
               "RelativeToolTip": "Aplication\\Services\\PropertyService.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAABoAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwEAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-05T00:35:14.832Z"
+              "WhenOpened": "2026-04-06T05:53:18.8Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "PropertyController.cs",
               "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\PropertyController.cs",
               "RelativeDocumentMoniker": "ReservationSystem\\Controllers\\PropertyController.cs",
               "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\PropertyController.cs",
               "RelativeToolTip": "ReservationSystem\\Controllers\\PropertyController.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAwwEoAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGMAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-05T00:30:49.128Z"
+              "WhenOpened": "2026-04-06T05:50:26.527Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "JwtService.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\JwtService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Services\\JwtService.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\JwtService.cs",
-              "RelativeToolTip": "Aplication\\Services\\JwtService.cs",
-              "ViewState": "AgIAAKMAAAAAAAAAAAAjwL4AAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-05T19:57:31.437Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IReservationService.cs",
-              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Interfaces\\IReservationService.cs",
-              "RelativeDocumentMoniker": "Aplication\\Interfaces\\IReservationService.cs",
-              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Interfaces\\IReservationService.cs",
-              "RelativeToolTip": "Aplication\\Interfaces\\IReservationService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-05T01:46:57.477Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 2,
               "Title": "AuthenticationController.cs",
               "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\AuthenticationController.cs",
               "RelativeDocumentMoniker": "ReservationSystem\\Controllers\\AuthenticationController.cs",
               "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\AuthenticationController.cs",
               "RelativeToolTip": "ReservationSystem\\Controllers\\AuthenticationController.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAgwDMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-05T00:54:48.547Z"
+              "WhenOpened": "2026-04-06T05:47:15.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "JwtService.cs",
+              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\JwtService.cs",
+              "RelativeDocumentMoniker": "Aplication\\Services\\JwtService.cs",
+              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\Aplication\\Services\\JwtService.cs",
+              "RelativeToolTip": "Aplication\\Services\\JwtService.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwEAAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T05:55:12.791Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LockController.cs",
+              "DocumentMoniker": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\LockController.cs",
+              "RelativeDocumentMoniker": "ReservationSystem\\Controllers\\LockController.cs",
+              "ToolTip": "C:\\Users\\monts\\source\\repos\\ReservationSystem\\ReservationSystem\\Controllers\\LockController.cs",
+              "RelativeToolTip": "ReservationSystem\\Controllers\\LockController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T05:22:25.365Z",
+              "EditorCaption": ""
             }
           ]
         }

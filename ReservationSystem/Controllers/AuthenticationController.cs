@@ -38,7 +38,10 @@ namespace Presentation.Controllers
                 return BadRequest("Provide all required fields");
             }
 
-            try
+            await _jwtService.Register(payload);
+            return Created(nameof(Register), $"User {payload.Email} created");
+
+            /*try
             {
                 await _jwtService.Register(payload);
             }
@@ -47,7 +50,7 @@ namespace Presentation.Controllers
                 return BadRequest(ex.Message);
             }
 
-            return Created(nameof(Register), $"User {payload.Email} created");
+            return Created(nameof(Register), $"User {payload.Email} created");*/
         }
 
         [HttpPost("login")]
@@ -58,7 +61,10 @@ namespace Presentation.Controllers
                 return BadRequest("Provide all required fields");
             }
 
-            try
+            var tokenValue = await _jwtService.Login(payload);
+            return Ok(tokenValue);
+
+            /*try
             {
                 var tokenValue = await _jwtService.Login(payload);
                 return Ok(tokenValue);
@@ -66,13 +72,22 @@ namespace Presentation.Controllers
             catch (Exception ex)
             {
                 return Unauthorized(ex.Message);
-            }
+            }*/
         }
 
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenRequestDTO payload)
         {
-            try
+            var result = await _jwtService.VerifyAndGenerateTokenAsync(payload);
+
+            if (result == null)
+            { 
+                return BadRequest("Invalid tokens"); 
+            }
+
+            return Ok(result);
+
+            /*try
             {
                 var result = await _jwtService.VerifyAndGenerateTokenAsync(payload);
 
@@ -83,9 +98,7 @@ namespace Presentation.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-            }
+            }*/
         }
-
-        
     }
 }

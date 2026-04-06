@@ -2,6 +2,7 @@
 using Aplication.Interfaces;
 using Domain.Entity;
 using Domain.Enums;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -38,17 +39,19 @@ namespace Aplication.Services
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (string.IsNullOrEmpty(userId))
-                throw new UnauthorizedAccessException("Unauthorized");
+                throw new UnauthorizedDomainException("Unauthorized");
 
             var property = await _propertyRepository.GetValue(idProperty);
 
             if (property == null)
-                throw new KeyNotFoundException("Property not found.");
+                throw new ResourceNotFoundException("Property not found.");
 
             if (property.IdHost != userId)
             {
-                throw new UnauthorizedAccessException("You cannot lock this property.");
+                throw new UnauthorizedDomainException("You cannot lock this property.");
             }
+
+            //FluentValidation
 
             if (dto.StartDate > dto.EndDate)
             {
@@ -57,7 +60,7 @@ namespace Aplication.Services
 
             if (!(await IsAvailable(idProperty, dto.StartDate, dto.EndDate)))
             {
-                throw new InvalidOperationException("The property already has reservations or have been locked in the selected dates");
+                throw new BusinessRuleException("The property already has reservations or have been locked in the selected dates");
             }
 
             var block = new Lock
@@ -76,15 +79,10 @@ namespace Aplication.Services
             {
                 await _lockRepository.Delete(id);
             }
-            catch (KeyNotFoundException)
-            {
-                throw new KeyNotFoundException("There is no lock.");
-            }
             catch (Exception)
             {
-                throw new Exception();
+                throw new ResourceNotFoundException("There is no lock.");
             }
-            
         }
 
         public async Task<IEnumerable<LockVM>> GetPropertyLocks(int idProperty)
@@ -92,13 +90,13 @@ namespace Aplication.Services
             //Change to ICurrentUser
             var userId = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (string.IsNullOrEmpty(userId)) throw new UnauthorizedAccessException();
+            if (string.IsNullOrEmpty(userId)) throw new UnauthorizedDomainException("Unauthorized");
 
             var property = await _propertyRepository.GetValue(idProperty);
 
 
-            if (property == null) throw new KeyNotFoundException("Property not found.");
-            if (property.IdHost != userId) throw new UnauthorizedAccessException("You are not the owner of this property.");
+            if (property == null) throw new ResourceNotFoundException("Property not found.");
+            if (property.IdHost != userId) throw new UnauthorizedDomainException("You are not the owner of this property.");
 
 
             var blocks = (await _lockRepository.GetAll()).Where(r => r.IdProperty == idProperty);

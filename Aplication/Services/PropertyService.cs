@@ -1,6 +1,7 @@
 ﻿using Aplication.DTOs;
 using Aplication.Interfaces;
 using Domain.Entity;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -31,9 +32,10 @@ namespace Aplication.Services
 
             if (string.IsNullOrEmpty(userId))
             {
-                throw new UnauthorizedAccessException("User not authenticated");
+                throw new UnauthorizedDomainException("User not authenticated");
             }
 
+            //FluentValidation
             var property = new Property
             {
                 IdHost = userId,
@@ -44,7 +46,6 @@ namespace Aplication.Services
                 Capacity = dto.Capacity,
             };
 
-
             await _repository.Add(property);
         }
 
@@ -53,16 +54,15 @@ namespace Aplication.Services
             var original = await GetValue(id);
 
             if (original == null)
-                throw new KeyNotFoundException("Property not found.");
+                throw new ResourceNotFoundException("Property not found.");
 
 
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (original.IdHost != userId)
             {
-                throw new UnauthorizedAccessException("You are not allowed to modify this property.");
+                throw new UnauthorizedDomainException("You are not allowed to modify this property.");
             }
-
 
             await _repository.Delete(id);
         }
@@ -88,7 +88,7 @@ namespace Aplication.Services
 
             if (property == null)
             {
-                throw new KeyNotFoundException("Property not found.");
+                throw new ResourceNotFoundException("Property not found.");
             }
 
             return new PropertyViewVM
@@ -114,7 +114,7 @@ namespace Aplication.Services
 
             if (original == null)
             {
-                throw new KeyNotFoundException("Property not found.");
+                throw new ResourceNotFoundException("Property not found.");
             }
 
             var userId = _httpContextAccessor.HttpContext.User
@@ -122,7 +122,7 @@ namespace Aplication.Services
 
             if (original.IdHost != userId)
             {
-                throw new UnauthorizedAccessException("You are not allowed to modify this property.");
+                throw new UnauthorizedDomainException("You are not allowed to modify this property.");
             }
 
             original.Title = !string.IsNullOrEmpty(dto.Title) ? dto.Title : original.Title;

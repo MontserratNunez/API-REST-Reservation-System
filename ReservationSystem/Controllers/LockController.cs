@@ -24,7 +24,9 @@ namespace Presentation.Controllers
         [HttpPost("properties/{propertyId}/lock")]
         public async Task<IActionResult> Add([FromRoute] int propertyId, [FromBody] LockDTO dto)
         {
-            try
+            await service.Add(propertyId, dto);
+            return Created(nameof(Add), $"Lock created.");
+            /*try
             {
                 await service.Add(propertyId, dto);
                 return Created(nameof(Add), $"Lock created.");
@@ -44,14 +46,17 @@ namespace Presentation.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-            }
+            }*/
         }
 
         [Authorize(Roles = UserRoles.Host)]
         [HttpGet("property/{id}/datelocks")]
         public async Task<IActionResult> GetPropertyLocks([FromRoute] int id)
         {
-            try
+            var result = await service.GetPropertyLocks(id);
+            return Ok(result);
+
+            /*try
             {
                 var result = await service.GetPropertyLocks(id);
                 return Ok(result);
@@ -67,14 +72,17 @@ namespace Presentation.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-            }
+            }*/
         }
 
         [Authorize(Roles = UserRoles.Host)]
         [HttpDelete("property/{id}/datelocks")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            try
+            await service.Delete(id);
+            return Ok("Lock deleted");
+
+            /*try
             {
                 await service.Delete(id);
                 return Ok("Lock deleted");
@@ -90,7 +98,7 @@ namespace Presentation.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-            }
+            }*/
         }
     }
 }

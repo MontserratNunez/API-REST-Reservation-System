@@ -2,6 +2,7 @@
 using Aplication.Interfaces.IJwt;
 using Domain.Entity;
 using Domain.Enums;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -47,7 +48,7 @@ namespace Aplication.Services
 
             if (userExists != null)
             {
-                throw new Exception($"User {payload.Email} already exists");
+                throw new UserAlreadyExistsException(payload.Email);
             }
 
             ApplicationUser newUser = new ApplicationUser()
@@ -61,7 +62,9 @@ namespace Aplication.Services
 
             if (!result.Succeeded)
             {
-                throw new Exception("User could not be created.");
+                var errors = result.Errors.Select(e => e.Description);
+
+                throw new UserCreationFailedException(errors);
             }
 
             switch (payload.Role)
@@ -88,7 +91,7 @@ namespace Aplication.Services
 
                 return tokenValue;
             }
-            throw new Exception("Unauthorized access.");
+            throw new InvalidCredentialsException();
         }
 
         private async Task<AuthResultVM> GenerateJwtTokenAsync(ApplicationUser user, string existingRefreshToken)
@@ -165,26 +168,26 @@ namespace Aplication.Services
             var utcExpiryDate = long.Parse(tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
 
             var expiryDate = UnixTimeStampToDateTimeInUTC(utcExpiryDate);
-            if (expiryDate > DateTime.UtcNow) throw new Exception("Token has not expired yet.");
+            if (expiryDate > DateTime.UtcNow) throw new TokenNotExpiredException();
 
             var dbRefreshToken = await _jwtRepository.RefreshTokens(payload);
 
             if (dbRefreshToken == null)
             {
-                throw new Exception("Refresh token does not exist");
+                throw new RefreshTokenNotFoundException();
             }
             else
             {
                 //Check 5 - Validate Id
                 var jti = tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
 
-                if (dbRefreshToken.JwtId != jti) throw new Exception("Token does not match");
+                if (dbRefreshToken.JwtId != jti) throw new TokenMismatchException();
 
                 //Check 6 - Refresh token expiration
-                if (dbRefreshToken.DateExpire <= DateTime.UtcNow) throw new Exception("Your refresh token has expired, please re-authenticate!");
+                if (dbRefreshToken.DateExpire <= DateTime.UtcNow) throw new RefreshTokenExpiredException();
 
                 //Check 7 - Refresh token Revoked
-                if (dbRefreshToken.IsRevoked) throw new Exception("Refresh token is revoked");
+                if (dbRefreshToken.IsRevoked) throw new RefreshTokenRevokedException();
 
                 //Generate new token (with existing refresh token)
                 var dbUserData = await _userManager.FindByIdAsync(dbRefreshToken.UserId);

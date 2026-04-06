@@ -14,6 +14,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using my_books.Data;
 using Aplication.Interfaces.IJwt;
+using Presentation.Middlewares;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Aplication.Validators;
 
 namespace ReservationSystem
 {
@@ -25,7 +29,8 @@ namespace ReservationSystem
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddFluentValidation();
+            ;
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
@@ -53,6 +58,7 @@ namespace ReservationSystem
                 });
             });
 
+            builder.Services.AddValidatorsFromAssemblyContaining<ReservationCreateDTOValidator>();
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AppConnection")));
 
@@ -136,6 +142,8 @@ namespace ReservationSystem
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseHttpsRedirection();
 

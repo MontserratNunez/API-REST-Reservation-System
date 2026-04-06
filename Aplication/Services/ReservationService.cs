@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Domain.Exceptions;
 //using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Aplication.Services
@@ -47,31 +48,24 @@ namespace Aplication.Services
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (string.IsNullOrEmpty(userId))
-                throw new UnauthorizedAccessException("Unauthorized");
+                throw new UnauthorizedDomainException("Unauthorized");
 
             var property = await _propertyRepository.GetValue(propertyId);
 
             if (property == null)
-                throw new KeyNotFoundException("Property not found.");
+                throw new ResourceNotFoundException("Property not found");
 
-            if(property.IdHost == userId)
-            {
-                throw new InvalidOperationException("You cannot reserve your own property.");
-            }
+            if (property.IdHost == userId)
+                throw new BusinessRuleException("You cannot reserve your own property");
             
-            if(dto.StartDate > dto.EndDate)
-            {
-                throw new ArgumentException("Start date cannot be bigger than end date");
-            }
 
-            if (dto.GuestQuantity <= 0 || (dto.GuestQuantity > property.Capacity))
-            {
-                throw new ArgumentException($"The maximun guests must be {property.Capacity}");
-            }
+            if (dto.GuestQuantity > property.Capacity)
+                throw new BusinessRuleException($"Maximum allowed guests: {property.Capacity}");
+
 
             if (!(await IsAvailable(propertyId, dto.StartDate, dto.EndDate)))
             {
-                throw new InvalidOperationException("The property is not available in the selected dates");
+                throw new BusinessRuleException("The property is not available in the selected dates");
             }
 
             var reservation = new Reservation
@@ -91,13 +85,13 @@ namespace Aplication.Services
         {
             var reservation = await GetValue(id);
 
-            if (reservation == null) throw new KeyNotFoundException("Reservation not found.");
+            if (reservation == null) throw new ResourceNotFoundException("Reservation not found.");
 
             //Change to ICurrentUser
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 
-            if (string.IsNullOrEmpty(userId)) throw new UnauthorizedAccessException();
+            if (string.IsNullOrEmpty(userId)) throw new UnauthorizedDomainException("Unauthorized");
 
 
             if (reservation.IdGuest == userId)
@@ -112,7 +106,7 @@ namespace Aplication.Services
                 return await HostReservation(reservation);
             }
             
-            throw new UnauthorizedAccessException("You dont't have permission to see this reservation");
+            throw new UnauthorizedDomainException("You dont't have permission to see this reservation");
         }
 
         private async Task<Reservation> GetValue(int id)
@@ -125,13 +119,13 @@ namespace Aplication.Services
             //Change to ICurrentUser
             var userId = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (string.IsNullOrEmpty(userId)) throw new UnauthorizedAccessException();
+            if (string.IsNullOrEmpty(userId)) throw new UnauthorizedDomainException("Unauthorized");
 
             var property = await _propertyRepository.GetValue(idProperty);
 
 
-            if (property == null) throw new KeyNotFoundException("Property not found.");
-            if (property.IdHost != userId) throw new UnauthorizedAccessException("You are not the owner of this property.");
+            if (property == null) throw new ResourceNotFoundException("Property not found.");
+            if (property.IdHost != userId) throw new UnauthorizedDomainException("You are not the owner of this property.");
 
 
             var reservations = (await _reservationRepository.GetAll()).Where(r => r.IdProperty == idProperty);
@@ -145,23 +139,6 @@ namespace Aplication.Services
 
             return result;
         }
-
-        /*public async Task<IEnumerable<HostReservationVM>> GetAllReservationsVM(int idProperty)
-        {
-            //Change to ICurrentUser
-            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var properties = (await _propertyRepository.GetAll()).Where(r => r.IdHost == userId);
-            var reservations = GetAll().Where(r => r.IdProperty == idProperty);
-            var reservationList = new List<HostReservationVM>();
-
-            foreach (var reservation in reservations)
-            {
-                reservationList.Add(await HostReservation(reservation));
-            }
-
-            return reservationList;
-        }*/
 
         private async Task<HostReservationVM> HostReservation(Reservation reservation)
         {
@@ -198,15 +175,15 @@ namespace Aplication.Services
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (string.IsNullOrEmpty(userId)) throw new UnauthorizedAccessException();
+            if (string.IsNullOrEmpty(userId)) throw new UnauthorizedDomainException("Unauthorized");
 
             Reservation reservation = await GetValue(id);
 
             if (reservation == null)
-                throw new KeyNotFoundException("Reservation not found.");
+                throw new ResourceNotFoundException("Reservation not found.");
 
             if(reservation.Status != ReservationStatus.Confirmed)
-                throw new InvalidOperationException("Cannot mark reservation as canceled.");
+                throw new BusinessRuleException("Cannot mark reservation as canceled.");
 
             reservation.Status = ReservationStatus.Canceled;
 
@@ -219,16 +196,16 @@ namespace Aplication.Services
 
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (string.IsNullOrEmpty(userId)) throw new UnauthorizedAccessException();
+            if (string.IsNullOrEmpty(userId)) throw new UnauthorizedDomainException("Unauthorized");
 
             if (reservation == null)
-                throw new KeyNotFoundException("Reservation not found.");
+                throw new ResourceNotFoundException("Reservation not found.");
 
             if (reservation.Status != ReservationStatus.Confirmed)
-                throw new InvalidOperationException("Cannot mark reservation as completed.");
+                throw new BusinessRuleException("Cannot mark reservation as completed.");
 
             if (reservation.EndDate > DateTime.Now)
-                throw new InvalidOperationException("The reservation has not ended, can't mark as completed.");
+                throw new BusinessRuleException("The reservation has not ended, can't mark as completed.");
 
             reservation.Status = ReservationStatus.Completed;
             await _reservationRepository.Update(reservation);

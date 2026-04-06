@@ -48,6 +48,59 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Presentation.Controllers.LockController",
+    "Method": "Add",
+    "RelativePath": "api/Lock/properties/{propertyId}/lock",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "propertyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Aplication.DTOs.LockDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.LockController",
+    "Method": "GetPropertyLocks",
+    "RelativePath": "api/Lock/property/{id}/datelocks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Presentation.Controllers.LockController",
+    "Method": "Delete",
+    "RelativePath": "api/Lock/property/{id}/datelocks",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Presentation.Controllers.PropertyController",
     "Method": "GetAll",
     "RelativePath": "api/Property",

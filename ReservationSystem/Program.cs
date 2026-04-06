@@ -64,6 +64,7 @@ namespace ReservationSystem
             builder.Services.AddScoped<IJwtRepository, JwtRepository>();
             builder.Services.AddScoped<IReservationService, ReservationService>();
             builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+            builder.Services.AddScoped<ILockService, LockService>();
             builder.Services.AddScoped<ILockRepository, LockRepository>();
 
             var tokenValidationParameters = new TokenValidationParameters()

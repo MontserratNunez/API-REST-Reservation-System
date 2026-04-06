@@ -243,11 +243,10 @@ namespace Aplication.Services
         {
             if (await _reservationRepository.OverlappingReservation(idProperty, startDate, endDate))
                 return false;
-            /*if (await _lockRepository.OverlappingBlock(idProperty, startDate, endDate))
-                return false;*/
+            if (await _lockRepository.OverlappingBlock(idProperty, startDate, endDate))
+                return false;
 
             return true;
-
         }
 
     }

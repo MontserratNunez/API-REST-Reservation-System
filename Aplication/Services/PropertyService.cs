@@ -15,12 +15,19 @@ namespace Aplication.Services
     public class PropertyService : IPropertyService
     {
         private readonly IRepository<Property> _repository;
+        private readonly IReservationRepository _reservationRepository;
+        private readonly ILockRepository _lockRepository;
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 
 
-        public PropertyService(IRepository<Property> repository, IHttpContextAccessor httpContextAccessor)
+        public PropertyService(IRepository<Property> repository,
+            ILockRepository lockRepository,
+            IReservationRepository reservationRepository,
+            IHttpContextAccessor httpContextAccessor)
         {
+            _lockRepository = lockRepository;
+            _reservationRepository = reservationRepository;
             _repository = repository;
             _httpContextAccessor = httpContextAccessor;
         }
@@ -81,10 +88,55 @@ namespace Aplication.Services
 
         }
 
+        public async Task<IEnumerable<PropertyViewVM>> Search(PropertySearchDTO filters)
+        {
+            var query = (await _repository.GetAll()).AsQueryable();
+
+            if (!string.IsNullOrEmpty(filters.Location))
+            {
+                query = query.Where(p => p.Location.ToLower().Contains(filters.Location.ToLower()));
+            }
+
+            if (filters.Capacity.HasValue)
+            {
+                query = query.Where(p => p.Capacity >= filters.Capacity.Value);
+            }
+
+            if (filters.MinPrice.HasValue)
+            {
+                query = query.Where(p => p.Price >= filters.MinPrice.Value);
+            }
+
+            if (filters.MaxPrice.HasValue)
+            {
+                query = query.Where(p => p.Price <= filters.MaxPrice.Value);
+            }
+
+            if (filters.StartDate.HasValue && filters.EndDate.HasValue)
+            {
+                var reservedIds =await _reservationRepository.GetOverlappingPropertyIds(filters.StartDate.Value,filters.EndDate.Value);
+
+                var blockedIds =await _lockRepository.GetOverlappingPropertyIds(filters.StartDate.Value,filters.EndDate.Value);
+
+                var unavailableIds = reservedIds.Union(blockedIds).ToHashSet();
+
+                query = query.Where(p => !unavailableIds.Contains(p.Id));
+            }
+
+            return query.Select(p => new PropertyViewVM
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Description = p.Description,
+                Location = p.Location,
+                Price = p.Price,
+                Capacity = p.Capacity
+            });
+        }
+
         public async Task<PropertyViewVM> GetProperty(int id)
         {
             var property = await GetValue(id);
-
 
             if (property == null)
             {

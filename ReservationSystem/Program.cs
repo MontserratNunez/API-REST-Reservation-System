@@ -33,7 +33,7 @@ namespace ReservationSystem
 
             // Add services to the container.
 
-            builder.Services.AddControllers();//.AddFluentValidation();
+            builder.Services.AddControllers().AddFluentValidation();
             
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -86,13 +86,9 @@ namespace ReservationSystem
 
             builder.Services.AddTransient<INotificationService, NotificationService>();
 
-
             builder.Services.AddScoped<IEventDispatcher, EventDispatcher>();
-
             builder.Services.AddScoped<IDomainEventHandler<ReservationCreatedEvent>, ReservationNotificationHandler>();
-
             builder.Services.AddScoped<IDomainEventHandler<ReservationCanceledEvent>, ReservationNotificationHandler>();
-
             builder.Services.AddScoped<IDomainEventHandler<ReservationCompletedEvent>, ReservationNotificationHandler>();
 
 
@@ -112,9 +108,6 @@ namespace ReservationSystem
             };
 
             builder.Services.AddSingleton(tokenValidationParameters);
-
-            /*var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailService>();
-            builder.Services.AddSingleton(emailConfig);*/
 
             //Add Identity
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -170,7 +163,7 @@ namespace ReservationSystem
                 app.UseSwaggerUI();
             }
 
-            //app.UseMiddleware<ExceptionHandlingMiddleware>();
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseHttpsRedirection();
 

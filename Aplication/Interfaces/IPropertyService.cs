@@ -11,6 +11,7 @@ namespace Aplication.Interfaces
     public interface IPropertyService
     {
         Task<IEnumerable<PropertyViewVM>> GetAll();
+        Task<IEnumerable<PropertyViewVM>> Search(PropertySearchDTO filters);
 
         Task<PropertyViewVM> GetProperty(int id);
 

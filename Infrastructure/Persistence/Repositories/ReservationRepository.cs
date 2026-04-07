@@ -3,8 +3,10 @@ using Domain.Entity;
 using Domain.Enums;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,5 +41,23 @@ namespace Infrastructure.Persistence.Repositories
                 endDate > r.StartDate
             );
         }
+
+        public async Task<IEnumerable<int>> GetOverlappingPropertyIds(DateTime startDate, DateTime endDate)
+        {
+            return await dbSet.Where(r =>
+                r.Status == ReservationStatus.Confirmed &&
+                startDate < r.EndDate &&
+                endDate > r.StartDate)
+                .Select(r => r.IdProperty)
+                .Distinct()
+                .ToListAsync();
+        }
+
+
+        public async Task<IDbContextTransaction> BeginTransactionAsync(IsolationLevel isolationLevel)
+        {
+            return await _context.Database.BeginTransactionAsync(isolationLevel);
+        }
+
     }
 }

@@ -32,5 +32,15 @@ namespace Infrastructure.Persistence.Repositories
                 endDate > l.StartDate
             );
         }
+        public async Task<IEnumerable<int>> GetOverlappingPropertyIds(DateTime startDate, DateTime endDate)
+        {
+            return await dbSet.Where(l =>
+                startDate < l.EndDate &&
+                endDate > l.StartDate)
+                .Select(l => l.IdProperty)
+                .Distinct()
+                .ToListAsync();
+        }
+
     }
 }

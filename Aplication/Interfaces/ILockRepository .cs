@@ -11,5 +11,7 @@ namespace Aplication.Interfaces
     {
         Task<bool> OverlappingBlock(int propertyId, DateTime startDate, DateTime endDate);
 
+        Task<IEnumerable<int>> GetOverlappingPropertyIds(DateTime startDate,DateTime endDate);
+
     }
 }

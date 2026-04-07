@@ -1,5 +1,6 @@
 ﻿using Aplication.DTOs;
 using Aplication.Interfaces;
+using Aplication.Services;
 using Domain.Entity;
 using Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
@@ -29,6 +30,12 @@ namespace Presentation.Controllers
             return Ok(await service.GetAll());
         }
 
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] PropertySearchDTO filters)
+        {
+            return Ok(await service.Search(filters));
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
@@ -39,7 +46,7 @@ namespace Presentation.Controllers
         public async Task<IActionResult> Add([FromBody] PropertyDTO property)
         {
             await service.Add(property);
-            return Created(nameof(Add), $"Lock created.");
+            return Created(nameof(Add), $"Property created.");
         }
 
         [Authorize(Roles = UserRoles.Host)]

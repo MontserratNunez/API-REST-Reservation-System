@@ -58,5 +58,52 @@ namespace Presentation.Controllers
             return Ok("Reservation completed.");
         }
 
+        [HttpPost("race_condition_test/{propertyId}")]
+        public async Task<IActionResult> RaceConditionTest(
+    int propertyId,
+    [FromBody] ReservationCreateDTO dto,
+    [FromServices] IServiceScopeFactory scopeFactory)
+        {
+            Exception? ex1 = null;
+            Exception? ex2 = null;
+
+            var task1 = Task.Run(async () =>
+            {
+                using var scope = scopeFactory.CreateScope();
+                var service = scope.ServiceProvider.GetRequiredService<IReservationService>();
+
+                try
+                {
+                    await service.Add(propertyId, dto);
+                }
+                catch (Exception ex)
+                {
+                    ex1 = ex;
+                }
+            });
+
+            var task2 = Task.Run(async () =>
+            {
+                using var scope = scopeFactory.CreateScope();
+                var service = scope.ServiceProvider.GetRequiredService<IReservationService>();
+
+                try
+                {
+                    await service.Add(propertyId, dto);
+                }
+                catch (Exception ex)
+                {
+                    ex2 = ex;
+                }
+            });
+
+            await Task.WhenAll(task1, task2);
+
+            return Ok(new
+            {
+                Task1 = ex1?.Message ?? "SUCCESS",
+                Task2 = ex2?.Message ?? "SUCCESS"
+            });
+        }
     }
 }

@@ -15,7 +15,7 @@ using Domain.Exceptions;
 using Aplication.Emails;
 using Microsoft.Extensions.Hosting;
 using Domain.Events;
-//using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Data.SqlClient;
 
 namespace Aplication.Services
 {
@@ -56,6 +56,8 @@ namespace Aplication.Services
             if (string.IsNullOrEmpty(userId))
                 throw new UnauthorizedDomainException("Unauthorized");
 
+            using var transaction = await _reservationRepository.BeginTransactionAsync(System.Data.IsolationLevel.Serializable);
+
             var property = await _propertyRepository.GetValue(propertyId);
 
             if (property == null)
@@ -66,44 +68,42 @@ namespace Aplication.Services
             
             if (dto.GuestQuantity > property.Capacity)
                 throw new BusinessRuleException($"Maximum allowed guests: {property.Capacity}");
+            
 
+            Reservation reservation;
 
-            if (!(await IsAvailable(propertyId, dto.StartDate, dto.EndDate)))
+            //Race condition
+            try
             {
-                throw new BusinessRuleException("The property is not available in the selected dates");
+                if (!(await IsAvailable(propertyId, dto.StartDate, dto.EndDate)))
+                {
+                    throw new BusinessRuleException("The property is not available in the selected dates");
+                }
+
+                reservation = new Reservation
+                {
+                    IdProperty = propertyId,
+                    IdGuest = userId,
+                    StartDate = dto.StartDate,
+                    EndDate = dto.EndDate,
+                    GuestQuantity = dto.GuestQuantity,
+                    Status = ReservationStatus.Confirmed
+                };
+
+                await _reservationRepository.Add(reservation);
+
+                await transaction.CommitAsync();
             }
-
-            var reservation = new Reservation
+            catch (Exception ex) when (ex.Message.Contains("transient failure", StringComparison.OrdinalIgnoreCase))
             {
-                IdProperty = propertyId,
-                IdGuest = userId,
-                StartDate = dto.StartDate,
-                EndDate = dto.EndDate,
-                GuestQuantity = dto.GuestQuantity,
-                Status = ReservationStatus.Confirmed
-            };
-
-            await _reservationRepository.Add(reservation);
-
-            /*//Presentar datos
-            string propertyTitle = (await _propertyRepository.GetValue(reservation.IdProperty)).Title;
-
-            //Obtener host para enviarle un email
-            var host = await _userManager.FindByIdAsync(reservation.IdGuest);
-
-            //Logica de notificacion
-            await _notificationService.CreateAsync(
-                property.IdHost,
-                "New reservation",
-                $"A new reservation was made for your property {propertyTitle} from {dto.StartDate:d} to {dto.EndDate:d}"
-            );
-
-            _ = Task.Run(() =>
-                _emailService.SendEmail(
-                    host.Email,
-                    "New reservation",
-                    $"A new reservation was made for your property {propertyTitle} from {dto.StartDate:d} to {dto.EndDate:d}"
-                ));*/
+                await transaction.RollbackAsync();
+                throw new PropertyUnavailableException();
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
 
             await _eventDispatcher.DispatchAsync(new ReservationCreatedEvent(reservation, property));
 
@@ -219,19 +219,6 @@ namespace Aplication.Services
 
             await _reservationRepository.Update(reservation);
 
-            /*await _notificationService.CreateAsync(
-                reservation.IdGuest,
-                "Reservation canceled",
-                "Your reservation has been canceled."
-            );
-
-            await _notificationService.CreateAsync(
-                property.IdHost,
-                "Reservation canceled",
-                "A reservation on your property was canceled."
-            );*/
-
-
             await _eventDispatcher.DispatchAsync(new ReservationCanceledEvent(reservation, property));
         }
 
@@ -256,12 +243,6 @@ namespace Aplication.Services
             var property = await _propertyRepository.GetValue(reservation.IdProperty);
 
             await _reservationRepository.Update(reservation);
-
-            /*await _notificationService.CreateAsync(
-                reservation.IdGuest,
-                "Reservation completed",
-                "Your stay is completed. Thank you!"
-            );*/
 
             await _eventDispatcher.DispatchAsync(new ReservationCompletedEvent(reservation, property));
         }

@@ -12,6 +12,9 @@ using Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Domain.Exceptions;
+using Aplication.Emails;
+using Microsoft.Extensions.Hosting;
+using Domain.Events;
 //using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Aplication.Services
@@ -22,6 +25,7 @@ namespace Aplication.Services
         private readonly IRepository<Property> _propertyRepository;
         private readonly ILockRepository _lockRepository;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IEventDispatcher _eventDispatcher;
 
         //private readonly ICurrentUserService _currentUser;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -31,6 +35,7 @@ namespace Aplication.Services
             ILockRepository lockRepository,
             IReservationRepository reservationRepository, 
             IHttpContextAccessor httpContextAccessor,
+            IEventDispatcher eventDispatcher,
             //ICurrentUserService currentUser
             UserManager<ApplicationUser> userManager)
         {
@@ -40,6 +45,7 @@ namespace Aplication.Services
             _httpContextAccessor = httpContextAccessor;
             //_currentUser = currentUser;
             _userManager = userManager;
+            _eventDispatcher = eventDispatcher;
         }
 
         public async Task Add(int propertyId, ReservationCreateDTO dto)
@@ -58,7 +64,6 @@ namespace Aplication.Services
             if (property.IdHost == userId)
                 throw new BusinessRuleException("You cannot reserve your own property");
             
-
             if (dto.GuestQuantity > property.Capacity)
                 throw new BusinessRuleException($"Maximum allowed guests: {property.Capacity}");
 
@@ -79,6 +84,29 @@ namespace Aplication.Services
             };
 
             await _reservationRepository.Add(reservation);
+
+            /*//Presentar datos
+            string propertyTitle = (await _propertyRepository.GetValue(reservation.IdProperty)).Title;
+
+            //Obtener host para enviarle un email
+            var host = await _userManager.FindByIdAsync(reservation.IdGuest);
+
+            //Logica de notificacion
+            await _notificationService.CreateAsync(
+                property.IdHost,
+                "New reservation",
+                $"A new reservation was made for your property {propertyTitle} from {dto.StartDate:d} to {dto.EndDate:d}"
+            );
+
+            _ = Task.Run(() =>
+                _emailService.SendEmail(
+                    host.Email,
+                    "New reservation",
+                    $"A new reservation was made for your property {propertyTitle} from {dto.StartDate:d} to {dto.EndDate:d}"
+                ));*/
+
+            await _eventDispatcher.DispatchAsync(new ReservationCreatedEvent(reservation, property));
+
         }
 
         public async Task<IReservationVM> GetReservation(int id)
@@ -185,9 +213,26 @@ namespace Aplication.Services
             if(reservation.Status != ReservationStatus.Confirmed)
                 throw new BusinessRuleException("Cannot mark reservation as canceled.");
 
+            var property = await _propertyRepository.GetValue(reservation.IdProperty);
+
             reservation.Status = ReservationStatus.Canceled;
 
             await _reservationRepository.Update(reservation);
+
+            /*await _notificationService.CreateAsync(
+                reservation.IdGuest,
+                "Reservation canceled",
+                "Your reservation has been canceled."
+            );
+
+            await _notificationService.CreateAsync(
+                property.IdHost,
+                "Reservation canceled",
+                "A reservation on your property was canceled."
+            );*/
+
+
+            await _eventDispatcher.DispatchAsync(new ReservationCanceledEvent(reservation, property));
         }
 
         public async Task CompleteReservation(int id)
@@ -208,7 +253,17 @@ namespace Aplication.Services
                 throw new BusinessRuleException("The reservation has not ended, can't mark as completed.");
 
             reservation.Status = ReservationStatus.Completed;
+            var property = await _propertyRepository.GetValue(reservation.IdProperty);
+
             await _reservationRepository.Update(reservation);
+
+            /*await _notificationService.CreateAsync(
+                reservation.IdGuest,
+                "Reservation completed",
+                "Your stay is completed. Thank you!"
+            );*/
+
+            await _eventDispatcher.DispatchAsync(new ReservationCompletedEvent(reservation, property));
         }
 
         private async Task<IEnumerable<Reservation>> GetAll()

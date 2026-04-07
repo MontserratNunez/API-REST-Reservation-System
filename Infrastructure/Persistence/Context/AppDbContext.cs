@@ -18,7 +18,7 @@ namespace Infrastructure.Persistence.Context
         public DbSet<Reservation> Reservation { get; set; }
         public DbSet<Review> Review { get; set; }
         public DbSet<Lock> Lock { get; set; }
-        //public DbSet<Notification> Notification { get; set; }
+        public DbSet<Notification> Notification { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

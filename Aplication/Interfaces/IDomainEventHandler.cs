@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Email
+namespace Aplication.Interfaces
 {
-    public class GmailEmailService
+    public interface IDomainEventHandler<in TEvent>
     {
+        Task HandleAsync(TEvent domainEvent);
     }
 }

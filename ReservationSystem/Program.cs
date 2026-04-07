@@ -19,6 +19,9 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Aplication.Validators;
 using Infrastructure.Email;
+using Infrastructure.Events;
+using Domain.Events;
+using Aplication.EventHandlers;
 
 namespace ReservationSystem
 {
@@ -30,7 +33,7 @@ namespace ReservationSystem
 
             // Add services to the container.
 
-            builder.Services.AddControllers().AddFluentValidation();
+            builder.Services.AddControllers();//.AddFluentValidation();
             
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -80,6 +83,18 @@ namespace ReservationSystem
             builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
             builder.Services.AddTransient<IEmailService, EmailService>();
+
+            builder.Services.AddTransient<INotificationService, NotificationService>();
+
+
+            builder.Services.AddScoped<IEventDispatcher, EventDispatcher>();
+
+            builder.Services.AddScoped<IDomainEventHandler<ReservationCreatedEvent>, ReservationNotificationHandler>();
+
+            builder.Services.AddScoped<IDomainEventHandler<ReservationCanceledEvent>, ReservationNotificationHandler>();
+
+            builder.Services.AddScoped<IDomainEventHandler<ReservationCompletedEvent>, ReservationNotificationHandler>();
+
 
             var tokenValidationParameters = new TokenValidationParameters()
             {
@@ -155,7 +170,7 @@ namespace ReservationSystem
                 app.UseSwaggerUI();
             }
 
-            app.UseMiddleware<ExceptionHandlingMiddleware>();
+            //app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseHttpsRedirection();
 

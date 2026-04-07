@@ -50,5 +50,20 @@ namespace Aplication.Emails
                 </div>
             </body>";
         }
+
+        public static string AddReservation(string info)
+        {
+            return $@"";
+        }
+
+        public static string CancelReservation(string info)
+        {
+            return $@"";
+        }
+
+        public static string CompleteReservation(string info)
+        {
+            return $@"";
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace Presentation.Controllers
         }
 
         [Authorize(Roles = UserRoles.Host)]
-        [HttpPost("properties/{propertyId}/lock")]
+        [HttpPost("property/{propertyId}")]
         public async Task<IActionResult> Add([FromRoute] int propertyId, [FromBody] LockDTO dto)
         {
             await service.Add(propertyId, dto);
@@ -29,7 +29,7 @@ namespace Presentation.Controllers
         }
 
         [Authorize(Roles = UserRoles.Host)]
-        [HttpGet("property/{id}/datelocks")]
+        [HttpGet("property/{id}")]
         public async Task<IActionResult> GetPropertyLocks([FromRoute] int id)
         {
             var result = await service.GetPropertyLocks(id);
@@ -37,7 +37,7 @@ namespace Presentation.Controllers
         }
 
         [Authorize(Roles = UserRoles.Host)]
-        [HttpDelete("property/{id}/datelocks")]
+        [HttpDelete("property/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await service.Delete(id);

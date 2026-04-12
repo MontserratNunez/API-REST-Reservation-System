@@ -26,15 +26,31 @@ namespace Presentation.Controllers
         }
 
         [Authorize(Roles = UserRoles.Host)]
-        [HttpGet("property/{id}/reservations")]
+        [HttpGet("property/{id}")]
         public async Task<IActionResult> GetAllReservationsVM([FromRoute] int id)
         {
-            var result = await service.GetAllReservationsVM(id);
+            var result = await service.GetAllPropertyReservationsVM(id);
+            return Ok(result);
+        }
+
+        [Authorize(Roles = UserRoles.Guest)]
+        [HttpGet("guest-reservations")]
+        public async Task<IActionResult> GetAllGuestReservationsVM()
+        {
+            var result = await service.GetAllGuestReservationsVM();
+            return Ok(result);
+        }
+
+        [Authorize(Roles = UserRoles.Guest)]
+        [HttpGet("property/unavailable/{id}")]
+        public async Task<IActionResult> GetUnavailableDates([FromRoute] int id)
+        {
+            var result = await service.GetUnavailableDates(id);
             return Ok(result);
         }
 
         [Authorize(Roles = UserRoles.Guest+","+UserRoles.Host)]
-        [HttpPost("properties/{propertyId}/reservations")]
+        [HttpPost("property/{propertyId}")]
         public async Task<IActionResult> Add([FromRoute] int propertyId, [FromBody] ReservationCreateDTO dto)
         {
 
@@ -43,7 +59,7 @@ namespace Presentation.Controllers
         }
 
         [Authorize(Roles = UserRoles.Guest)]
-        [HttpPut("reservation/{id}/cancel")]
+        [HttpPut("{id}/cancel")]
         public async Task<IActionResult> Cancel([FromRoute] int id)
         {
             await service.CancelReservation(id);
@@ -51,18 +67,17 @@ namespace Presentation.Controllers
         }
 
         [Authorize(Roles = UserRoles.Guest)]
-        [HttpPut("reservation/{id}/complete")]
+        [HttpPut("{id}/complete")]
         public async Task<IActionResult> Complete([FromRoute] int id)
         {
-            await service.CancelReservation(id);
+            await service.CompleteReservation(id);
             return Ok("Reservation completed.");
         }
 
+
+        [Authorize(Roles = UserRoles.Admin)]
         [HttpPost("race_condition_test/{propertyId}")]
-        public async Task<IActionResult> RaceConditionTest(
-    int propertyId,
-    [FromBody] ReservationCreateDTO dto,
-    [FromServices] IServiceScopeFactory scopeFactory)
+        public async Task<IActionResult> RaceConditionTest(int propertyId, [FromBody] ReservationCreateDTO dto, [FromServices] IServiceScopeFactory scopeFactory)
         {
             Exception? ex1 = null;
             Exception? ex2 = null;

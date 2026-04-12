@@ -23,17 +23,23 @@ namespace Presentation.Controllers
             this.service = service;
         }
 
-        [HttpGet]
+        /*[HttpGet]
         //[EnableRateLimiting("per-user")]
         public async Task<IActionResult> GetAll([FromQuery] int? capacity) 
         {
             return Ok(await service.GetAll());
-        }
+        }*/
 
-        [HttpGet("search")]
+        [HttpGet("Search")]
         public async Task<IActionResult> Search([FromQuery] PropertySearchDTO filters)
         {
             return Ok(await service.Search(filters));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetHostProperties() 
+        {
+            return Ok(await service.GetHostProperties());
         }
 
         [HttpGet("{id}")]

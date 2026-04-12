@@ -1,4 +1,5 @@
 ﻿using Aplication.Interfaces;
+using Domain.Exceptions;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -31,7 +32,7 @@ namespace Infrastructure.Persistence.Repositories
             var entity = await GetValue(id);
             if (entity == null)
             {
-                throw new KeyNotFoundException();
+                throw new ResourceNotFoundException("");
             }
             
             dbSet.Remove(entity);

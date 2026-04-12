@@ -15,6 +15,7 @@ namespace Domain.Entity
         public required DateTime StartDate { get; set; }
         public required DateTime EndDate { get; set; }
         public required int GuestQuantity { get; set; }
+        public required bool HasReview { get; set; }
         public required ReservationStatus Status { get; set; }
     }
 }

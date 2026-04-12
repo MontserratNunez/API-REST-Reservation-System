@@ -87,6 +87,7 @@ namespace Aplication.Services
                     StartDate = dto.StartDate,
                     EndDate = dto.EndDate,
                     GuestQuantity = dto.GuestQuantity,
+                    HasReview = false,
                     Status = ReservationStatus.Confirmed
                 };
 
@@ -142,7 +143,7 @@ namespace Aplication.Services
             return await _reservationRepository.GetValue(id);
         }
 
-        public async Task<IEnumerable<HostReservationVM>> GetAllReservationsVM(int idProperty)
+        public async Task<IEnumerable<HostReservationVM>> GetAllPropertyReservationsVM(int idProperty)
         {
             //Change to ICurrentUser
             var userId = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -163,6 +164,24 @@ namespace Aplication.Services
             foreach (var reservation in reservations)
             {
                 result.Add(await HostReservation(reservation));
+            }
+
+            return result;
+        }
+
+        public async Task<IEnumerable<GuestReservationVM>> GetAllGuestReservationsVM()
+        {
+            var userId = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId)) throw new UnauthorizedDomainException("Unauthorized");
+
+            var reservations = (await _reservationRepository.GetAll()).Where(r => r.IdGuest == userId);
+
+            var result = new List<GuestReservationVM>();
+
+            foreach (var reservation in reservations)
+            {
+                result.Add(await GuestReservation(reservation));
             }
 
             return result;
@@ -195,8 +214,29 @@ namespace Aplication.Services
                 StartDate = reservation.StartDate,
                 EndDate = reservation.EndDate,
                 GuestQuantity = reservation.GuestQuantity,
+                HasReview = reservation.HasReview,
                 Status = reservation.Status
             };
+        }
+
+        public async Task<IEnumerable<UnavailableDate>> GetUnavailableDates(int idProperty)
+        {
+            var dates = new List<UnavailableDate>();
+
+            var reservations = (await _reservationRepository.GetAll()).Where(r => r.IdProperty == idProperty);
+            var locks = (await _lockRepository.GetAll()).Where(r => r.IdProperty == idProperty);
+
+            foreach (var r in reservations)
+            {
+                dates.Add(new UnavailableDate { StartDate = r.StartDate, EndDate = r.EndDate});
+            }
+
+            foreach (var l in locks)
+            {
+                dates.Add(new UnavailableDate { StartDate = l.StartDate, EndDate = l.EndDate });
+            }
+
+            return dates;
         }
 
         public async Task CancelReservation(int id)
@@ -210,8 +250,13 @@ namespace Aplication.Services
             if (reservation == null)
                 throw new ResourceNotFoundException("Reservation not found.");
 
-            if(reservation.Status != ReservationStatus.Confirmed)
-                throw new BusinessRuleException("Cannot mark reservation as canceled.");
+            if (reservation.IdGuest != userId)
+            {
+                throw new UnauthorizedDomainException("You dont't have permission to cancel this reservation");
+            }
+
+            if (reservation.Status != ReservationStatus.Confirmed)
+                throw new BusinessRuleException("Cannot mark reservation as canceled."); 
 
             var property = await _propertyRepository.GetValue(reservation.IdProperty);
 
@@ -233,6 +278,11 @@ namespace Aplication.Services
             if (reservation == null)
                 throw new ResourceNotFoundException("Reservation not found.");
 
+            if (reservation.IdGuest != userId)
+            {
+                throw new UnauthorizedDomainException("You dont't have permission to complete this reservation");
+            }
+
             if (reservation.Status != ReservationStatus.Confirmed)
                 throw new BusinessRuleException("Cannot mark reservation as completed.");
 
@@ -245,11 +295,6 @@ namespace Aplication.Services
             await _reservationRepository.Update(reservation);
 
             await _eventDispatcher.DispatchAsync(new ReservationCompletedEvent(reservation, property));
-        }
-
-        private async Task<IEnumerable<Reservation>> GetAll()
-        {
-            return await _reservationRepository.GetAll();
         }
 
         private async Task<bool> IsAvailable(int idProperty, DateTime startDate, DateTime endDate)

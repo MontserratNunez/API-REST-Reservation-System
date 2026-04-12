@@ -50,21 +50,22 @@ namespace Aplication.Services
             if (reservation.Status != ReservationStatus.Completed)
                 throw new BusinessRuleException("You can only leave a review for a completed reservation.");
 
-
-
-            if (await _reviewRepository.Exists(reservation.IdProperty, userId))
+            if (reservation.HasReview)
                 throw new BusinessRuleException("You already reviewed this property.");
 
             var review = new Review
             {
                 IdProperty = reservation.IdProperty,
-                IdGuest = userId,
+                IdReservation = reservation.Id,
                 Rating = dto.Rating,
                 Comment = dto.Comment,
                 ReviewDate = DateTime.Now
             };
 
             await _reviewRepository.Add(review);
+
+            reservation.HasReview = true;
+            await _reservationRepository.Update(reservation);
         }
 
         public async Task<PropertyRatingVM> GetPropertyRating(int propertyId)

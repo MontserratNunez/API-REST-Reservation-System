@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Presentation.Controllers
 {
     
-    [Route("api/notifications")]
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class NotificationController : ControllerBase
@@ -17,7 +17,7 @@ namespace Presentation.Controllers
             _notificationService = notificationService;
         }
 
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _notificationService.GetAll();

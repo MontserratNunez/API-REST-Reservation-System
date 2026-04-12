@@ -16,6 +16,7 @@ namespace Aplication.DTOs
         public required string Location { get; set; }
         [Required]
         public required decimal Price { get; set; }
-        public int Capacity { get; set; }
+        [Required]
+        public required int Capacity { get; set; }
     }
 }

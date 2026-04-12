@@ -49,10 +49,10 @@ namespace Presentation.Middlewares
                 context.Response.StatusCode = 409;
                 await context.Response.WriteAsJsonAsync(new { message = ex.Message });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 context.Response.StatusCode = 500;
-                await context.Response.WriteAsJsonAsync(new { message = "Internal server error" });
+                await context.Response.WriteAsJsonAsync(new { message = ex.Message });
             }
         }
     }

@@ -1,8 +1,10 @@
 ﻿using Aplication.DTOs;
 using Aplication.Interfaces;
 using Domain.Entity;
+using Domain.Enums;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,7 @@ namespace Aplication.Services
         private readonly IRepository<Property> _repository;
         private readonly IReservationRepository _reservationRepository;
         private readonly ILockRepository _lockRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -24,12 +27,15 @@ namespace Aplication.Services
         public PropertyService(IRepository<Property> repository,
             ILockRepository lockRepository,
             IReservationRepository reservationRepository,
-            IHttpContextAccessor httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor,
+            UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             _lockRepository = lockRepository;
             _reservationRepository = reservationRepository;
             _repository = repository;
             _httpContextAccessor = httpContextAccessor;
+            _userManager = userManager;
         }
 
         public async Task Add(PropertyDTO dto)
@@ -42,6 +48,15 @@ namespace Aplication.Services
                 throw new UnauthorizedDomainException("User not authenticated");
             }
 
+            var user = await _userManager.FindByIdAsync(userId);
+
+            var isHost = await _userManager.IsInRoleAsync(user, UserRoles.Host.ToString());
+
+            if (!isHost)
+            {
+                await _userManager.AddToRoleAsync(user, UserRoles.Host.ToString());
+            }
+
             //FluentValidation
             var property = new Property
             {
@@ -50,6 +65,7 @@ namespace Aplication.Services
                 Description = dto.Description,
                 Location = dto.Location,
                 Price = dto.Price,
+                Active = true,
                 Capacity = dto.Capacity,
             };
 
@@ -60,9 +76,8 @@ namespace Aplication.Services
         {
             var original = await GetValue(id);
 
-            if (original == null)
+            if (original == null || !original.Active)
                 throw new ResourceNotFoundException("Property not found.");
-
 
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -71,12 +86,13 @@ namespace Aplication.Services
                 throw new UnauthorizedDomainException("You are not allowed to modify this property.");
             }
 
-            await _repository.Delete(id);
+            original.Active = false;
+            await _repository.Update(original);
         }
 
         public async Task<IEnumerable<PropertyViewVM>> GetAll()
         {
-            return (await _repository.GetAll()).Select(p => new PropertyViewVM
+            return (await _repository.GetAll()).Where(p => p.Active == true).Select(p => new PropertyViewVM
             {
                 Id = p.Id,
                 Title = p.Title,
@@ -85,12 +101,13 @@ namespace Aplication.Services
                 Price = p.Price,
                 Capacity = p.Capacity
             });
-
         }
 
         public async Task<IEnumerable<PropertyViewVM>> Search(PropertySearchDTO filters)
         {
             var query = (await _repository.GetAll()).AsQueryable();
+
+            query = query.Where(p => p.Active == true);
 
             if (!string.IsNullOrEmpty(filters.Location))
             {
@@ -114,9 +131,9 @@ namespace Aplication.Services
 
             if (filters.StartDate.HasValue && filters.EndDate.HasValue)
             {
-                var reservedIds =await _reservationRepository.GetOverlappingPropertyIds(filters.StartDate.Value,filters.EndDate.Value);
+                var reservedIds = await _reservationRepository.GetOverlappingPropertyIds(filters.StartDate.Value, filters.EndDate.Value);
 
-                var blockedIds =await _lockRepository.GetOverlappingPropertyIds(filters.StartDate.Value,filters.EndDate.Value);
+                var blockedIds = await _lockRepository.GetOverlappingPropertyIds(filters.StartDate.Value, filters.EndDate.Value);
 
                 var unavailableIds = reservedIds.Union(blockedIds).ToHashSet();
 
@@ -134,11 +151,31 @@ namespace Aplication.Services
             });
         }
 
+        public async Task<IEnumerable<PropertyViewVM>> GetHostProperties()
+        {
+            var query = (await _repository.GetAll()).AsQueryable();
+
+            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            query = query.Where(p => p.IdHost == userId);
+            query = query.Where(p => p.Active == true);
+
+            return query.Select(p => new PropertyViewVM
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Description = p.Description,
+                Location = p.Location,
+                Price = p.Price,
+                Capacity = p.Capacity
+            });
+        }
+
         public async Task<PropertyViewVM> GetProperty(int id)
         {
             var property = await GetValue(id);
 
-            if (property == null)
+            if (property == null || !property.Active)
             {
                 throw new ResourceNotFoundException("Property not found.");
             }
@@ -164,7 +201,7 @@ namespace Aplication.Services
         {
             var original = await GetValue(id);
 
-            if (original == null)
+            if (original == null || !original.Active)
             {
                 throw new ResourceNotFoundException("Property not found.");
             }

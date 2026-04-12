@@ -31,10 +31,26 @@ namespace ReservationSystem
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var allowedOrigins = new[]
+            {
+                "http://localhost:5173",
+                "http://127.0.0.1:5173"
+            };
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("FrontendPolicy", policy =>
+                {
+                    policy.WithOrigins(allowedOrigins)
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                });
+            });
+
             // Add services to the container.
 
             builder.Services.AddControllers().AddFluentValidation();
-            
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
@@ -61,8 +77,10 @@ namespace ReservationSystem
                 });
             });
 
+            
             builder.Services.AddValidatorsFromAssemblyContaining<ReservationCreateDTOValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<ReviewCreateDTOValidator>();
+            
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AppConnection")));
 
@@ -108,6 +126,7 @@ namespace ReservationSystem
             };
 
             builder.Services.AddSingleton(tokenValidationParameters);
+
 
             //Add Identity
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -164,7 +183,7 @@ namespace ReservationSystem
             }
 
             app.UseMiddleware<ExceptionHandlingMiddleware>();
-
+            app.UseCors("FrontendPolicy");
             app.UseHttpsRedirection();
 
             app.UseAuthentication();

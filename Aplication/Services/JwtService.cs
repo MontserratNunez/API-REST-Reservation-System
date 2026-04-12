@@ -185,40 +185,52 @@ namespace Aplication.Services
         {
             var jwTokenHandler = new JwtSecurityTokenHandler();
 
-            var tokenInVerification = jwTokenHandler.ValidateToken(payload.Token, _tokenValidationParameters, out var validatedToken);
-
-            if (validatedToken is JwtSecurityToken jwtSecurityToken)
+            try
             {
-                var result = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256,
-                    StringComparison.InvariantCultureIgnoreCase);
+                var tokenInVerification = jwTokenHandler.ValidateToken(payload.Token, _tokenValidationParameters, out var validatedToken);
 
-                if (result == false) return null;
+                if (validatedToken is JwtSecurityToken jwtSecurityToken)
+                {
+                    var result = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256,
+                        StringComparison.InvariantCultureIgnoreCase);
+
+                    if (result == false) return null;
+                }
+
+                var utcExpiryDate = long.Parse(tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
+
+                var expiryDate = UnixTimeStampToDateTimeInUTC(utcExpiryDate);
+                if (expiryDate > DateTime.UtcNow) throw new TokenNotExpiredException();
+
+                var dbRefreshToken = await _jwtRepository.RefreshTokens(payload);
+
+                if (dbRefreshToken == null)
+                {
+                    throw new RefreshTokenNotFoundException();
+                }
+                else
+                {
+                    //Check 5 - Validate Id
+                    var jti = tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
+
+                    if (dbRefreshToken.JwtId != jti) throw new TokenMismatchException();
+
+                    //Check 6 - Refresh token expiration
+                    if (dbRefreshToken.DateExpire <= DateTime.UtcNow) throw new RefreshTokenExpiredException();
+
+                    //Check 7 - Refresh token Revoked
+                    if (dbRefreshToken.IsRevoked) throw new RefreshTokenRevokedException();
+
+                    //Generate new token (with existing refresh token)
+                    var dbUserData = await _userManager.FindByIdAsync(dbRefreshToken.UserId);
+                    var newTokenResponse = GenerateJwtTokenAsync(dbUserData, payload.RefreshToken);
+
+                    return await newTokenResponse;
+                }
             }
-
-            var utcExpiryDate = long.Parse(tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
-
-            var expiryDate = UnixTimeStampToDateTimeInUTC(utcExpiryDate);
-            if (expiryDate > DateTime.UtcNow) throw new TokenNotExpiredException();
-
-            var dbRefreshToken = await _jwtRepository.RefreshTokens(payload);
-
-            if (dbRefreshToken == null)
+            catch (SecurityTokenExpiredException)
             {
-                throw new RefreshTokenNotFoundException();
-            }
-            else
-            {
-                //Check 5 - Validate Id
-                var jti = tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
-
-                if (dbRefreshToken.JwtId != jti) throw new TokenMismatchException();
-
-                //Check 6 - Refresh token expiration
-                if (dbRefreshToken.DateExpire <= DateTime.UtcNow) throw new RefreshTokenExpiredException();
-
-                //Check 7 - Refresh token Revoked
-                if (dbRefreshToken.IsRevoked) throw new RefreshTokenRevokedException();
-
+                var dbRefreshToken = await _jwtRepository.RefreshTokens(payload);
                 //Generate new token (with existing refresh token)
                 var dbUserData = await _userManager.FindByIdAsync(dbRefreshToken.UserId);
                 var newTokenResponse = GenerateJwtTokenAsync(dbUserData, payload.RefreshToken);

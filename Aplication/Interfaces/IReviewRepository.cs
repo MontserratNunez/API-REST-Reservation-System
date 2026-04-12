@@ -9,7 +9,6 @@ namespace Aplication.Interfaces
 {
     public interface IReviewRepository : IRepository<Review>
     {
-        Task<bool> Exists(int propertyId, string guestId);
         Task<List<Review>> GetByProperty(int propertyId);
     }
 }

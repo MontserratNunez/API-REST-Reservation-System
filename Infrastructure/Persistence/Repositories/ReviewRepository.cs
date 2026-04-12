@@ -22,14 +22,6 @@ namespace Infrastructure.Persistence.Repositories
             dbSet = context.Set<Review>();
         }
 
-        public async Task<bool> Exists(int propertyId, string guestId)
-        {
-            return await dbSet.AnyAsync(r =>
-                    r.IdProperty == propertyId &&
-                    r.IdGuest.ToString() == guestId
-                );
-        }
-
         public async Task<List<Review>> GetByProperty(int propertyId)
         {
             return await dbSet.Where(r => r.IdProperty == propertyId)

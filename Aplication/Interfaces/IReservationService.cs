@@ -14,6 +14,8 @@ namespace Aplication.Interfaces
         Task<IReservationVM> GetReservation(int id);
         Task CancelReservation(int id);
         Task CompleteReservation(int id);
-        Task<IEnumerable<HostReservationVM>> GetAllReservationsVM(int idProperty);
+        Task<IEnumerable<HostReservationVM>> GetAllPropertyReservationsVM(int idProperty);
+        Task<IEnumerable<GuestReservationVM>> GetAllGuestReservationsVM();
+        Task<IEnumerable<UnavailableDate>> GetUnavailableDates(int idProperty);
     }
 }

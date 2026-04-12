@@ -20,5 +20,7 @@ namespace Aplication.Interfaces
         Task Update(int id, PropertyUpdateDTO entity);
 
         Task Delete(int id);
+
+        Task<IEnumerable<PropertyViewVM>> GetHostProperties();
     }
 }

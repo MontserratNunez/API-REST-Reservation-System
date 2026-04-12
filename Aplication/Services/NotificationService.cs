@@ -33,7 +33,7 @@ namespace Aplication.Services
                 Title = title,
                 Message = message,
                 CreatedAt = DateTime.Now,
-                IsRead = true
+                IsRead = false
             };
 
             await _repository.Add(notification);

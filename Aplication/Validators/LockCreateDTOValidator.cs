@@ -8,9 +8,9 @@ using FluentValidation;
 
 namespace Aplication.Validators
 {
-    public class ReservationCreateDTOValidator : AbstractValidator<ReservationCreateDTO>
+    public class LockCreateDTOValidator : AbstractValidator<LockDTO>
     {
-        public ReservationCreateDTOValidator()
+        public LockCreateDTOValidator()
         {
             RuleFor(x => x.StartDate)
                 .NotEmpty()
@@ -21,10 +21,6 @@ namespace Aplication.Validators
                 .WithMessage("End date is required")
                 .GreaterThanOrEqualTo(x => x.StartDate)
                 .WithMessage("End date must be greater than start date");
-
-            RuleFor(x => x.GuestQuantity)
-                .GreaterThan(0)
-                .WithMessage("Guest quantity must be greater than zero");
         }
     }
 }

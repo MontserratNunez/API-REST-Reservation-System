@@ -18,7 +18,6 @@ namespace Aplication.Validators
                 .WithMessage("Rating must be between 1 and 5");
 
             RuleFor(x => x.Comment)
-                .NotEmpty()
                 .MaximumLength(500);
         }
     }

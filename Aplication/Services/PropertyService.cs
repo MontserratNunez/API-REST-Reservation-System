@@ -2,6 +2,7 @@
 using Aplication.Interfaces;
 using Domain.Entity;
 using Domain.Enums;
+using Domain.Events;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -20,7 +21,7 @@ namespace Aplication.Services
         private readonly IReservationRepository _reservationRepository;
         private readonly ILockRepository _lockRepository;
         private readonly UserManager<ApplicationUser> _userManager;
-
+        private readonly IEventDispatcher _eventDispatcher;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
 
@@ -28,6 +29,7 @@ namespace Aplication.Services
             ILockRepository lockRepository,
             IReservationRepository reservationRepository,
             IHttpContextAccessor httpContextAccessor,
+            IEventDispatcher eventDispatcher,
             UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
@@ -36,6 +38,7 @@ namespace Aplication.Services
             _repository = repository;
             _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
+            _eventDispatcher = eventDispatcher;
         }
 
         public async Task Add(PropertyDTO dto)
@@ -88,6 +91,10 @@ namespace Aplication.Services
 
             original.Active = false;
             await _repository.Update(original);
+
+            var reservations = (await _reservationRepository.CancelReservations(original.Id));
+
+            await _eventDispatcher.DispatchAsync(new PropertyDeletedEvent(reservations, original));
         }
 
         public async Task<IEnumerable<PropertyViewVM>> GetAll()

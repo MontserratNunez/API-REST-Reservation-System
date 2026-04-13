@@ -49,7 +49,8 @@ namespace ReservationSystem
 
             // Add services to the container.
 
-            builder.Services.AddControllers().AddFluentValidation();
+            builder.Services.AddControllers();//.AddFluentValidation();
+            builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -79,8 +80,14 @@ namespace ReservationSystem
 
             
             builder.Services.AddValidatorsFromAssemblyContaining<ReservationCreateDTOValidator>();
+
             builder.Services.AddValidatorsFromAssemblyContaining<ReviewCreateDTOValidator>();
-            
+
+            builder.Services.AddValidatorsFromAssemblyContaining<PropertyCreateDTOValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<PropertyUpdateDTOValidator>();
+
+            builder.Services.AddValidatorsFromAssemblyContaining<LockCreateDTOValidator>();
+
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AppConnection")));
 
@@ -108,6 +115,7 @@ namespace ReservationSystem
             builder.Services.AddScoped<IDomainEventHandler<ReservationCreatedEvent>, ReservationNotificationHandler>();
             builder.Services.AddScoped<IDomainEventHandler<ReservationCanceledEvent>, ReservationNotificationHandler>();
             builder.Services.AddScoped<IDomainEventHandler<ReservationCompletedEvent>, ReservationNotificationHandler>();
+            builder.Services.AddScoped<IDomainEventHandler<PropertyDeletedEvent>, ReservationNotificationHandler>();
 
 
             var tokenValidationParameters = new TokenValidationParameters()

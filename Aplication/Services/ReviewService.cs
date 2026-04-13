@@ -68,6 +68,25 @@ namespace Aplication.Services
             await _reservationRepository.Update(reservation);
         }
 
+        public async Task<IEnumerable<ReviewVM>> GetPropertyReviews(int propertyId)
+        {
+            var reviews = await _reviewRepository.GetByProperty(propertyId);
+
+            var reviewsVM = new List<ReviewVM>();
+
+            foreach (var r in reviews)
+            {
+                reviewsVM.Add(new ReviewVM
+                {
+                    Rating = r.Rating,
+                    Comment = r.Comment,
+                    ReviewDate = r.ReviewDate,
+                });
+            }
+
+            return reviewsVM;
+        }
+
         public async Task<PropertyRatingVM> GetPropertyRating(int propertyId)
         {
             var reviews = await _reviewRepository.GetByProperty(propertyId);

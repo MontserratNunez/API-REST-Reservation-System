@@ -94,18 +94,7 @@ namespace Aplication.Services
                 );
             });
 
-            switch (payload.Role)
-            {
-                case "Admin":
-                    await _userManager.AddToRoleAsync(newUser, UserRoles.Admin.ToString());
-                    break;
-                case "Host":
-                    await _userManager.AddToRoleAsync(newUser, UserRoles.Host.ToString());
-                    break;
-                default:
-                    await _userManager.AddToRoleAsync(newUser, UserRoles.Guest.ToString());
-                    break;
-            }
+            await _userManager.AddToRoleAsync(newUser, UserRoles.Guest.ToString());
         }
 
         public async Task<AuthResultVM> Login([FromBody] LoginVM payload)

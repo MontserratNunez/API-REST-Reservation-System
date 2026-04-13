@@ -59,5 +59,18 @@ namespace Infrastructure.Persistence.Repositories
             return await _context.Database.BeginTransactionAsync(isolationLevel);
         }
 
+        public async Task<IEnumerable<Reservation>> CancelReservations(int propertyId)
+        {
+            var reservations = await dbSet.Where(r => r.IdProperty == propertyId && r.Status == ReservationStatus.Confirmed).ToListAsync();
+
+            foreach (var reservation in reservations)
+            {
+                reservation.Status = ReservationStatus.Canceled;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return reservations;
+        }
     }
 }

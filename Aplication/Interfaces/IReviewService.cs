@@ -12,5 +12,6 @@ namespace Aplication.Interfaces
     {
         Task AddReview(int reservationId, ReviewCreateDTO dto);
         Task<PropertyRatingVM> GetPropertyRating(int propertyId);
+        Task<IEnumerable<ReviewVM>> GetPropertyReviews(int propertyId);
     }
 }

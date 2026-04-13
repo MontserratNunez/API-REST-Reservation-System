@@ -60,7 +60,7 @@ namespace Aplication.Services
 
             var property = await _propertyRepository.GetValue(propertyId);
 
-            if (property == null)
+            if (property == null || !property.Active)
                 throw new ResourceNotFoundException("Property not found");
 
             if (property.IdHost == userId)
@@ -223,7 +223,7 @@ namespace Aplication.Services
         {
             var dates = new List<UnavailableDate>();
 
-            var reservations = (await _reservationRepository.GetAll()).Where(r => r.IdProperty == idProperty);
+            var reservations = (await _reservationRepository.GetAll()).Where(r => r.IdProperty == idProperty && r.Status != ReservationStatus.Canceled);
             var locks = (await _lockRepository.GetAll()).Where(r => r.IdProperty == idProperty);
 
             foreach (var r in reservations)

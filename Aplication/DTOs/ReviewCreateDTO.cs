@@ -8,7 +8,7 @@ namespace Aplication.DTOs
 {
     public class ReviewCreateDTO
     {
-        public int Rating { get; set; }
-        public string Comment { get; set; } = string.Empty;
+        public required int Rating { get; set; }
+        public string? Comment { get; set; }
     }
 }

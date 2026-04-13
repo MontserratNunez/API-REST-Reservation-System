@@ -8,7 +8,7 @@ namespace Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ReviewController : ControllerBase
     {
         private readonly IReviewService _service;
@@ -19,9 +19,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(
-            int reservationId,
-            [FromBody] ReviewCreateDTO dto)
+        public async Task<IActionResult> Add(int reservationId, [FromBody] ReviewCreateDTO dto)
         {
             await _service.AddReview(reservationId, dto);
             return Created("", "Review created successfully");
@@ -31,6 +29,13 @@ namespace Presentation.Controllers
         public async Task<IActionResult> GetRating(int propertyId)
         {
             var result = await _service.GetPropertyRating(propertyId);
+            return Ok(result);
+        }
+
+        [HttpGet()]
+        public async Task<IActionResult> GetReviews(int propertyId)
+        {
+            var result = await _service.GetPropertyReviews(propertyId);
             return Ok(result);
         }
     }

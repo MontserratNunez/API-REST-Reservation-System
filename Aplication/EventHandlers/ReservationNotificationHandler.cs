@@ -13,7 +13,8 @@ namespace Aplication.EventHandlers
     public class ReservationNotificationHandler :
     IDomainEventHandler<ReservationCreatedEvent>,
     IDomainEventHandler<ReservationCanceledEvent>,
-    IDomainEventHandler<ReservationCompletedEvent>
+    IDomainEventHandler<ReservationCompletedEvent>,
+    IDomainEventHandler<PropertyDeletedEvent>
     {
         private readonly INotificationService _notificationService;
         private readonly IEmailService _emailService;
@@ -40,11 +41,12 @@ namespace Aplication.EventHandlers
             );
 
             _ = Task.Run(() =>
-                _emailService.SendEmail(
-                    host.Email,
-                    "New reservation",
-                    $"A new reservation was made for {e.Property.Title}"
-                ));
+            {
+                if (host.Email != null)
+                { 
+                    _emailService.SendEmail(host.Email, "New reservation", $"A new reservation was made for {e.Property.Title}"); 
+                }
+            });
         }
 
         public async Task HandleAsync(ReservationCanceledEvent e)
@@ -58,12 +60,18 @@ namespace Aplication.EventHandlers
 
             await _notificationService.Create(e.Property.IdHost, title, hostMessage);
             await _notificationService.Create(e.Reservation.IdGuest, title, guestMessage);
-            
-
+           
             _ = Task.Run(() =>
             {
-                _emailService.SendEmail(host!.Email!, title, hostMessage);
-                _emailService.SendEmail(guest!.Email!, title, guestMessage);
+                if (host.Email != null)
+                {
+                    _emailService.SendEmail(host!.Email!, title, hostMessage);
+                }
+
+                if(guest.Email != null)
+                {
+                    _emailService.SendEmail(guest!.Email!, title, guestMessage);
+                }
             });
         }
 
@@ -72,14 +80,39 @@ namespace Aplication.EventHandlers
             var guest = await _userManager.FindByIdAsync(e.Reservation.IdGuest);
 
             string title = "Reservation completed";
-            string message = $"The reservation for {e.Property.Title} for has been completed.";
+            string message = $"The reservation for {e.Property.Title} has been completed.";
 
             await _notificationService.Create(e.Reservation.IdGuest, title, message);
 
             _ = Task.Run(() =>
             {
-                _emailService.SendEmail(guest.Email, title, message);
+                if (guest.Email != null)
+                    _emailService.SendEmail(guest.Email, title, message);
             });
+        }
+
+        public async Task HandleAsync(PropertyDeletedEvent e)
+        {
+            var guests = new List<ApplicationUser>();
+                
+            foreach(Reservation r in e.Reservations)
+            {
+                guests.Add(await _userManager.FindByIdAsync(r.IdGuest));
+            }
+
+            string title = "Reservation canceled";
+            string message = $"Your reservation for {e.Property.Title} has been canceled by the host .";
+
+            foreach (var guest in guests)
+            {
+                await _notificationService.Create(guest.Id, title, message);
+
+                _ = Task.Run(() =>
+                {
+                    if (guest.Email != null)
+                        _emailService.SendEmail(guest.Email, title, message);
+                });
+            } 
         }
     }
 }

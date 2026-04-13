@@ -15,7 +15,8 @@ namespace Aplication.Interfaces
         Task<bool> OverlappingReservation(int propertyId, DateTime startDate, DateTime endDate);
 
         Task<IEnumerable<int>> GetOverlappingPropertyIds(DateTime startDate,DateTime endDate);
-
         Task<IDbContextTransaction> BeginTransactionAsync(IsolationLevel isolationLevel);
+
+        Task<IEnumerable<Reservation>> CancelReservations(int propertyId);
     }
 }

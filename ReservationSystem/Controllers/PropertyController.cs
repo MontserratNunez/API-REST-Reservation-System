@@ -36,7 +36,6 @@ namespace Presentation.Controllers
             return Ok(await service.Search(filters));
         }
 
-        [Authorize(Roles = UserRoles.Host)]
         [HttpGet]
         public async Task<IActionResult> GetHostProperties() 
         {

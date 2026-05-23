@@ -88,7 +88,6 @@ namespace ReservationSystem
 
             builder.Services.AddValidatorsFromAssemblyContaining<LockCreateDTOValidator>();
 
-
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AppConnection")));
 
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -159,6 +158,9 @@ namespace ReservationSystem
             builder.Services.AddAuthorization();
             builder.Services.AddHttpContextAccessor();
 
+            //To real aplications, the best practice is to use a reverse proxy or a CDN to implement rate limiting
+            // and making more difficult a DDos attack.
+
             /*builder.Services.AddRateLimiter(options =>
             {
                 options.AddPolicy("per-user", context =>
@@ -170,7 +172,7 @@ namespace ReservationSystem
                         partitionKey: userId,
                         factory: _ => new FixedWindowRateLimiterOptions
                         {
-                            PermitLimit = 20,
+                            PermitLimit = 10,
                             Window = TimeSpan.FromMinutes(1),
                             QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
                             QueueLimit = 0
@@ -185,7 +187,6 @@ namespace ReservationSystem
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }

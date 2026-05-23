@@ -14,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using my_books.Data.ViewModels.Authentication;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -51,6 +52,12 @@ namespace Aplication.Services
 
         public async Task Register([FromBody] RegisterVM payload)
         {
+            var emailValidator = new EmailAddressAttribute();
+            if (!emailValidator.IsValid(payload.Email))
+            {
+                throw new BusinessRuleException("Invalid email format.");
+            }
+
             var userExists = await _userManager.FindByEmailAsync(payload.Email);
 
             if (userExists != null)
@@ -101,16 +108,17 @@ namespace Aplication.Services
         {
             var user = await _userManager.FindByEmailAsync(payload.Email);
 
+            if (user == null)
+                throw new InvalidCredentialsException();
+
             if (!await _userManager.IsEmailConfirmedAsync(user))
                 throw new UnauthorizedDomainException("Email is not confirmed");
 
-            if (user != null && await _userManager.CheckPasswordAsync(user, payload.Password))
-            {
-                var tokenValue = await GenerateJwtTokenAsync(user, "");
+            var isPasswordValid = await _userManager.CheckPasswordAsync(user, payload.Password);
+            if (!isPasswordValid)
+                throw new InvalidCredentialsException();
 
-                return tokenValue;
-            }
-            throw new InvalidCredentialsException();
+            return await GenerateJwtTokenAsync(user, "");
         }
 
         private async Task<AuthResultVM> GenerateJwtTokenAsync(ApplicationUser user, string existingRefreshToken)

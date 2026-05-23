@@ -1,14 +1,19 @@
 ﻿using Aplication.DTOs;
 using Aplication.Interfaces;
+using Aplication.Services;
 using Domain.Entity;
+using Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PropertyController : ControllerBase
     {
         private readonly IPropertyService service;
@@ -18,38 +23,52 @@ namespace Presentation.Controllers
             this.service = service;
         }
 
-        [HttpGet]
-        public IActionResult Get() 
+        /*[HttpGet]
+        //[EnableRateLimiting("per-user")]
+        public async Task<IActionResult> GetAll([FromQuery] int? capacity) 
         {
-            return Ok(service.GetAll());
+            return Ok(await service.GetAll());
+        }*/
+
+        [HttpGet("Search")]
+        public async Task<IActionResult> Search([FromQuery] PropertySearchDTO filters)
+        {
+            return Ok(await service.Search(filters));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetHostProperties() 
+        {
+            return Ok(await service.GetHostProperties());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get([FromRoute] int id)
+        {
+            return Ok(await service.GetProperty(id));
         }
 
         [HttpPost]
-        public IActionResult Add(PropertyDTO property)
+        public async Task<IActionResult> Add([FromBody] PropertyDTO property)
         {
-            service.Add(property);
-            return Ok();
+            await service.Add(property);
+            return Created(nameof(Add), $"Property created.");
         }
 
-        [HttpPut]
-        public IActionResult Update(PropertyUpdateDTO property) 
+        [Authorize(Roles = UserRoles.Host)]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] PropertyUpdateDTO property) 
         {
-            try
-            {
-                service.Update(property);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
-            }
-
+            await service.Update(id, property);
             return Ok("Property updated.");
         }
 
-        //[Http]
+        [Authorize(Roles = UserRoles.Host)]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            await service.Delete(id);
+            return Ok("Property deleted.");
+        }
     }
 }

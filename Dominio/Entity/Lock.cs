@@ -8,8 +8,9 @@ namespace Domain.Entity
 {
     public class Lock
     {
-        public int IdProperty { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public int Id { get; set; }
+        public required int IdProperty { get; set; }
+        public required DateTime StartDate { get; set; }
+        public required DateTime EndDate { get; set; }
     }
 }

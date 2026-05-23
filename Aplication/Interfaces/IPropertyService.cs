@@ -10,14 +10,17 @@ namespace Aplication.Interfaces
 {
     public interface IPropertyService
     {
-        IEnumerable<Property> GetAll();
+        Task<IEnumerable<PropertyViewVM>> GetAll();
+        Task<IEnumerable<PropertyViewVM>> Search(PropertySearchDTO filters);
 
-        Property GetValue(int id);
+        Task<PropertyViewVM> GetProperty(int id);
 
-        void Add(PropertyDTO entity);
+        Task Add(PropertyDTO entity);
 
-        void Update(PropertyUpdateDTO entity);
+        Task Update(int id, PropertyUpdateDTO entity);
 
-        void Delete(int id);
+        Task Delete(int id);
+
+        Task<IEnumerable<PropertyViewVM>> GetHostProperties();
     }
 }

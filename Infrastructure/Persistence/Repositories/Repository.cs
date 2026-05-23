@@ -1,4 +1,5 @@
 ﻿using Aplication.Interfaces;
+using Domain.Exceptions;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,33 +21,38 @@ namespace Infrastructure.Persistence.Repositories
             dbSet = context.Set<T>();
         }
 
-        public void Add(T entity)
+        public async Task Add(T entity)
         {
             dbSet.Add(entity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            var entity = GetValue(id);
+            var entity = await GetValue(id);
+            if (entity == null)
+            {
+                throw new ResourceNotFoundException("");
+            }
+            
             dbSet.Remove(entity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
-            return dbSet.ToList();
+            return await dbSet.ToListAsync();
         }
 
-        public T GetValue(int id)
+        public async Task<T> GetValue(int id)
         {
-            return dbSet.Find(id);
+            return await dbSet.FindAsync(id);
         }
 
-        public void Update(T entity)
+        public async Task Update(T entity)
         {
             dbSet.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
